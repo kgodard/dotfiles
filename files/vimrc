@@ -322,7 +322,7 @@ map <leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
 
 ",v brings up my .vimrc
 ",r reloads it -- making all changes active (have to save first)
-map <leader>v :e ~/.vimrc<CR>
+map <leader>v :e ~/.dotfiles/files/vimrc<CR>
 map <silent> <leader>r :so ~/.vimrc<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 " Setting toggles
