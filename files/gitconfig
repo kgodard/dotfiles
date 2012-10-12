@@ -1,0 +1,18 @@
+[user]
+	name = Kim Godard
+	email = kgodard@comverge.com
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+[core]
+	editor = mvim -f
+	excludesfile = /Users/kimgodard/.gitignore
+[push]
+  default = current
+[gui]
+	fontui = -family \"Lucida Grande\" -size 16 -weight normal -slant roman -underline 0 -overstrike 0
+	fontdiff = -family Monaco -size 15 -weight normal -slant roman -underline 0 -overstrike 0
+[hub]
+	host = github.comverge.com
