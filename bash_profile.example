@@ -1,0 +1,4 @@
+export DOTFILES_HOME="/Users/kimgodard/.dotfiles"
+source "$DOTFILES_HOME/files/bashrc"
+
+source "$HOME/.rvm/scripts/rvm"
