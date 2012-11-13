@@ -10,6 +10,10 @@ Bundle 'gmarik/vundle'
 " ---------------
 " Plugin Bundles
 " ---------------
+" close all buffers except current or supplied
+Bundle 'vim-scripts/BufOnly.vim'
+" scratch buffer
+Bundle 'duff/vim-scratch.git'
 
 " Navigation
 Bundle 'ZoomWin'
@@ -19,7 +23,7 @@ Bundle 'edsono/vim-matchit'
 Bundle 'fholgado/minibufexpl.vim'
 " Bundle 'vim-scripts/taglist.vim'
 Bundle 'majutsushi/tagbar'
-Bundle 'twe4ked/vim-peepopen'
+" Bundle 'twe4ked/vim-peepopen'
 
 " This fork is required due to remapping ; to :
 Bundle 'christoomey/vim-space'
@@ -29,8 +33,8 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'mutewinter/vim-indent-guides'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'scrooloose/nerdtree'
-Bundle 'Rykka/colorv.vim'
-Bundle 'sjl/gundo.vim'
+" Bundle 'Rykka/colorv.vim'
+" Bundle 'sjl/gundo.vim'
 
 " Terminal
 Bundle "rosenfeld/conque-term"
@@ -38,19 +42,21 @@ Bundle "rosenfeld/conque-term"
 " Colors
 Bundle 'tomasr/molokai'
 Bundle 'mutewinter/ir_black_mod'
+Bundle 'vim-scripts/blackboard.vim'
 
 " Commands
 " Bundle 'scrooloose/nerdcommenter'
 Bundle 'vim-scripts/tComment'
 Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-speeddating'
+" Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-unimpaired'
+" Bundle 'tpope/vim-unimpaired'
 Bundle 'godlygeek/tabular'
 Bundle 'sickill/vim-pasta'
 Bundle 'mileszs/ack.vim'
 Bundle 'gmarik/sudo-gui.vim'
 Bundle 'milkypostman/vim-togglelist'
+Bundle 'wojtekmach/vim-rename'
 
 " Automatic Helpers
 Bundle 'IndexedSearch'
@@ -152,20 +158,21 @@ endif
 " ----------------------------------------
 " Color Scheme
 " ----------------------------------------
+colorscheme blackboard
 
-if has('unix') && !has('gui_macvim')
-  if $TERM == 'xterm-256color'
+" if has('unix') && !has('gui_macvim')
+"   if $TERM == 'xterm-256color'
     " Neato, 256 color terminal. We can use ir_black_mod
-    colorscheme ir_black_mod
-  else
+    " colorscheme molokai
+  " else
     " We can't use ir_black_mod :(
-    let g:CSApprox_verbose_level=0
-    colorscheme ir_black_mod
-  endif
-else
+    " let g:CSApprox_verbose_level=0
+    " colorscheme molokai
+  " endif
+" else
   " We're good if not on unix or in MacVim
-  colorscheme ir_black_mod
-endif
+  " colorscheme molokai
+" endif
 
 " ---------------
 " Backups
@@ -259,8 +266,6 @@ set t_vb=
 set mousehide " Hide mouse after chars typed
 set mouse=a   " Mouse in all modes
 
-
-
 " TODO: Move somewhere - Better complete options to speed it up
 set complete=.,w,b,u,U,b,]
 
@@ -297,8 +302,11 @@ imap <C-e> <C-R>=expand(' => ')<CR>
 " map for ruby interpolation brackets
 inoremap kk #{}<Left>
 
+" jump to end of line and keep editing
+inoremap ;; <Esc> A
+
 " html line break
-imap <C-Enter> <br/>
+" imap <C-Enter> <br/>
 
 " previous and next buffers
 map [ :bp<CR>
@@ -310,9 +318,25 @@ map <leader>m :bd <cr> :e <cr>
 " close all buffers
 nmap <leader><leader>q :bufdo bdelete <cr>
 
+" close all buffers except current
+nmap <leader><leader>o :BufOnly <cr>
+
 " ---------------
 " Leader Commands
 " ---------------
+
+" scratch buffers
+" open buffer horizontal
+map <leader>b :TScratch <cr>
+" open buffer in current window
+map <leader><leader>b :TScratch! <cr>
+
+
+" open shell
+" map <leader><leader>s :sh <cr>
+
+" open ConqueTerm shell
+map <leader><leader>s :ConqueTerm bash<cr>source ~/.bash_profile<cr>
 
 " leader s saving
 map <leader>s :w <cr>
@@ -360,6 +384,10 @@ nmap + <C-w>>
 " ----------------------------------------
 
 if has("autocmd")
+
+  " Auto-set filetyp for erb templates
+  " autocmd FileType eruby set ft=html.eruby.eruby-rails
+
   " No formatting on o key newlines
   autocmd BufNewFile,BufEnter * set formatoptions-=o
 
@@ -559,7 +587,10 @@ nmap <silent> <leader>wo :ZoomWin<CR>
 " endif
 
 " ctrlp.vim Options we always use
+nnoremap <leader>p :CtrlP<CR>
+nnoremap <leader><leader>p :CtrlP ../common<CR>
 let g:ctrlp_max_height = 100
+let g:ctrlp_working_path_mode = 'r'
 
 " Mapping from ctrlp we always use
 if has('gui_macvim')
