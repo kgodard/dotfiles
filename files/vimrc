@@ -37,7 +37,7 @@ Bundle 'scrooloose/nerdtree'
 " Bundle 'sjl/gundo.vim'
 
 " Terminal
-Bundle "rosenfeld/conque-term"
+" Bundle "rosenfeld/conque-term"
 
 " Colors
 Bundle 'tomasr/molokai'
@@ -66,6 +66,8 @@ Bundle 'scrooloose/syntastic'
 Bundle 'ervandew/supertab'
 Bundle 'gregsexton/MatchTag'
 Bundle 'Shougo/neocomplcache'
+" allows cycling through recent yanks/deletes
+Bundle 'vim-scripts/YankRing.vim'
 
 " Language Additions
 Bundle 'vim-ruby/vim-ruby'
@@ -336,7 +338,7 @@ map <leader><leader>b :TScratch! <cr>
 " map <leader><leader>s :sh <cr>
 
 " open ConqueTerm shell
-map <leader><leader>s :ConqueTerm bash<cr>source ~/.bash_profile<cr>
+" map <leader><leader>s :ConqueTerm bash<cr>source ~/.bash_profile<cr>
 
 " leader s saving
 map <leader>s :w <cr>
