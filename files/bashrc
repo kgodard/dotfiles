@@ -165,9 +165,9 @@ export LESS='-nfr'
 export IGNORE_REDIS=true
 
 # git completion
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-  . `brew --prefix`/etc/bash_completion
-fi
+# if [ -f `brew --prefix`/etc/bash_completion ]; then
+#   . `brew --prefix`/etc/bash_completion
+# fi
 
 # set prompt
 # PS1='\u:\w $ '
