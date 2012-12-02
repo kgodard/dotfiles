@@ -177,11 +177,12 @@ colorscheme blackboard
 " endif
 
 " ---------------
-" Backups
+" NO Backups
 " ---------------
-set backup
-set backupdir=~/.vim/backup
-set directory=~/.vim/tmp
+set nobackup
+set noswapfile
+" set backupdir=~/.vim/backup
+" set directory=~/.vim/tmp
 
 " ---------------
 " UI
