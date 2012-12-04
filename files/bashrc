@@ -164,10 +164,10 @@ export LESS='-nfr'
 
 export IGNORE_REDIS=true
 
-# git completion
-# if [ -f `brew --prefix`/etc/bash_completion ]; then
-#   . `brew --prefix`/etc/bash_completion
-# fi
+# get the current git branch for display in prompt
+function parse_git_branch () {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
 
 # set prompt
 # PS1='\u:\w $ '
@@ -175,4 +175,4 @@ RED="\[\033[0;31m\]"
 YELLOW="\[\033[0;33m\]"
 GREEN="\[\033[0;32m\]"
 
-PS1="$RED\$(date +%H:%M) \W$YELLOW \$(__git_ps1)$GREEN[\$(git config user.initials)]$ "
+PS1="$RED\$(date +%H:%M) \W$YELLOW \$(parse_git_branch)$GREEN[\$(git config user.initials)]$ "
