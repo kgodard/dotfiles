@@ -11,16 +11,21 @@ Bundle 'gmarik/vundle'
 " Plugin Bundles
 " ---------------
 " close all buffers except current or supplied
-Bundle 'vim-scripts/BufOnly.vim'
+" Bundle 'vim-scripts/BufOnly.vim'
 " scratch buffer
-Bundle 'duff/vim-scratch.git'
+" Bundle 'duff/vim-scratch.git'
+" sweetvim-rspec
+" Bundle 'duskhacker/sweet-rspec-vim'
+" Bundle 'skwp/vim-ruby-conque'
 
 " Navigation
 Bundle 'ZoomWin'
 " Bundle 'wincent/Command-T'
 Bundle 'kien/ctrlp.vim'
 Bundle 'edsono/vim-matchit'
-Bundle 'fholgado/minibufexpl.vim'
+Bundle 'sandeepcr529/Buffet.vim'
+Bundle 'vim-scripts/bufexplorer.zip'
+" Bundle 'fholgado/minibufexpl.vim'
 " Bundle 'vim-scripts/taglist.vim'
 Bundle 'majutsushi/tagbar'
 " Bundle 'twe4ked/vim-peepopen'
@@ -37,7 +42,7 @@ Bundle 'scrooloose/nerdtree'
 " Bundle 'sjl/gundo.vim'
 
 " Terminal
-" Bundle "rosenfeld/conque-term"
+" Bundle 'rosenfeld/conque-term'
 
 " Colors
 Bundle 'tomasr/molokai'
@@ -330,9 +335,9 @@ nmap <leader><leader>o :BufOnly <cr>
 
 " scratch buffers
 " open buffer horizontal
-map <leader>b :TScratch <cr>
+" map <leader>b :TScratch <cr>
 " open buffer in current window
-map <leader><leader>b :TScratch! <cr>
+" map <leader><leader>b :TScratch! <cr>
 
 
 " open shell
@@ -340,6 +345,9 @@ map <leader><leader>b :TScratch! <cr>
 
 " open ConqueTerm shell
 " map <leader><leader>s :ConqueTerm bash<cr>source ~/.bash_profile<cr>
+
+" Buffet
+map <leader>bf :Bufferlist<CR>
 
 " leader s saving
 map <leader>s :w <cr>
@@ -432,8 +440,8 @@ map <C-m> :TComment <cr>
 " ---------------
 " ConqueTerm
 " ---------------
-let g:ConqueTerm_ReadUnfocused = 1
-let g:ConqueTerm_InsertOnEnter = 0
+" let g:ConqueTerm_ReadUnfocused = 1
+" let g:ConqueTerm_InsertOnEnter = 0
 
 " ---------------
 " Gist
@@ -605,11 +613,13 @@ else
 end
 
 " mini buffer explorer settings
+" let g:miniBufExplMapWindowNavVim = 1
+" let g:miniBufExplUseSingleClick = 1
+" let g:miniBufExplModSelTarget = 1
+
+" unused vvv
 " let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapWindowNavVim = 1
 " let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplUseSingleClick = 1
-let g:miniBufExplModSelTarget = 1
 
 "" Also map leader commands
 "nnoremap <leader>u :CtrlPCurFile<CR>
@@ -653,7 +663,7 @@ if has('ruby')
 ruby << EOF
   require 'open-uri'
   require 'openssl'
-  
+
   def extract_url(url)
     re = %r{(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]\{\};:'".,<>?«»“”‘’]))}
 

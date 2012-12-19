@@ -8,6 +8,10 @@ export RUBY_GC_MALLOC_LIMIT=79000000
 
 #my stuff
 #alias git commands to use hub
+alias rdstart='brake daemons:resque:start'
+alias rdstop='brake daemons:resque:stop'
+alias rtstart='brake daemons:test:resque:start'
+alias rtstop='brake daemons:test:resque:stop'
 alias ap='cd ~/Development/intellisource_clean/apollo'
 alias precomp='RAILS_ENV=production bundle exec rake assets:precompile'
 alias brake='bundle exec rake'
@@ -121,8 +125,8 @@ alias rspc='rspec -d --drb --require ../common/lib/testing/rspec_timing_formatte
 alias rstart='bundle exec rake daemons:resque:start daemons:thingling:start'
 alias rstop='bundle exec rake daemons:redis:stop daemons:thingling:stop'
 alias rtbounce='rtstop; rtstart'
-alias rtstart='RAILS_ENV=test rstart'
-alias rtstop='RAILS_ENV=test rstop'
+# alias rtstart='RAILS_ENV=test rstart'
+# alias rtstop='RAILS_ENV=test rstop'
 # alias rvm-restart='rvm_reload_flag=1 source '\''/Users/jasonn/.rvm/scripts/rvm'\'''
 # alias rw='bundle exec resque-web ~/workspace/smartgrid/apollo/config/initializers/resque.rb'
 # alias sc='script/console'
@@ -155,6 +159,9 @@ alias ld='ls -lp | grep "/"'                   # dirs only
 export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export PATH=$PATH:$HOME/bin # Add ~/bin
 
+# for work -- make cucumber preserve data after runs
+export KEEP_DB=1
+
 export EDITOR=/usr/bin/vim
 # use vi mode in bash
 set -o vi
@@ -163,6 +170,12 @@ set -o vi
 export LESS='-nfr'
 
 export IGNORE_REDIS=true
+
+OSXGITCOMPLETION="/usr/local/etc/bash_completion.d/git-completion.bash"
+
+if [ -f $OSXGITCOMPLETION ]; then
+  . $OSXGITCOMPLETION
+fi
 
 # get the current git branch for display in prompt
 function parse_git_branch () {
