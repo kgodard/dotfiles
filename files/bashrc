@@ -160,7 +160,7 @@ export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export PATH=$PATH:$HOME/bin # Add ~/bin
 
 # for work -- make cucumber preserve data after runs
-export KEEP_DB=1
+export KEEP_DB=true
 
 export EDITOR=/usr/bin/vim
 # use vi mode in bash
