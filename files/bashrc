@@ -8,6 +8,7 @@ export RUBY_GC_MALLOC_LIMIT=79000000
 
 #my stuff
 #alias git commands to use hub
+alias gbr="git for-each-ref --sort=-committerdate --format='%(refname)' refs/heads/ | sed -e 's|refs/heads/||' | head -n 5"
 alias rdstart='brake daemons:resque:start'
 alias rdstop='brake daemons:resque:stop'
 alias rtstart='brake daemons:test:resque:start'
