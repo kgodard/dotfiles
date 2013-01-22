@@ -75,6 +75,7 @@ Bundle 'Shougo/neocomplcache'
 Bundle 'vim-scripts/YankRing.vim'
 
 " Language Additions
+Bundle 'nono/vim-handlebars'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-haml'
 Bundle 'pangloss/vim-javascript'
@@ -165,7 +166,7 @@ endif
 " ----------------------------------------
 " Color Scheme
 " ----------------------------------------
-colorscheme blackboard
+colorscheme peachpuff
 
 " if has('unix') && !has('gui_macvim')
 "   if $TERM == 'xterm-256color'
