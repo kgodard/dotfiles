@@ -48,6 +48,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'tomasr/molokai'
 Bundle 'mutewinter/ir_black_mod'
 Bundle 'vim-scripts/blackboard.vim'
+Bundle 'twe4ked/vim-colorscheme-switcher'
 
 " Commands
 " Bundle 'scrooloose/nerdcommenter'
@@ -164,9 +165,9 @@ elseif has('gui_macvim')
 endif
 
 " ----------------------------------------
-" Color Scheme
+" Color Scheme SETTING RANDOM - SEE LAST LINE
 " ----------------------------------------
-colorscheme peachpuff
+" colorscheme peachpuff
 
 " if has('unix') && !has('gui_macvim')
 "   if $TERM == 'xterm-256color'
@@ -288,8 +289,8 @@ set complete=.,w,b,u,U,b,]
 " This allows semi-colon for colon commands
 " nnoremap ; :
 
-map <F1> <Esc>
-imap <F1> <Esc>
+" map <F1> <Esc>
+" imap <F1> <Esc>
 
 " Removes doc lookup binding because it's easy to fat finger
 nmap K k
@@ -314,6 +315,9 @@ inoremap kk #{}<Left>
 " jump to end of line and keep editing
 inoremap ;; <Esc> A
 
+" space-bar centering
+nmap <space> zz
+
 " html line break
 " imap <C-Enter> <br/>
 
@@ -333,6 +337,7 @@ nmap <leader><leader>o :BufOnly <cr>
 " ---------------
 " Leader Commands
 " ---------------
+nmap <leader><leader>c :colorscheme <cr>
 
 " scratch buffers
 " open buffer horizontal
@@ -762,7 +767,6 @@ endfunction
 command! QuickSpellingFix call QuickSpellingFix()
 nmap <silent> <leader>z :QuickSpellingFix<CR>
 
-
 " ----------------------------------------
 " External Apps
 " ----------------------------------------
@@ -771,7 +775,6 @@ nmap <silent> <leader>z :QuickSpellingFix<CR>
 " Pretty XML
 " ---------------
 vmap <leader>x :!xmllint --format --recover --nowarning -<CR>
-
 
 " ---------------
 " Text Formatting
@@ -790,3 +793,12 @@ inoremap <A-j> <Esc>:m+<CR>==gi
 inoremap <A-k> <Esc>:m-2<CR>==gi
 vnoremap <A-j> :m'>+<CR>gv=gv
 vnoremap <A-k> :m-2<CR>gv=gv
+
+" set random colorscheme
+let paths = split(globpath(&runtimepath, 'colors/*.vim'), "\n")
+let list = map(paths, 'fnamemodify(v:val, ":t:r")')
+let schemes=sort(filter(copy(list), 'index(list, v:val, v:key+1)==-1'))
+let seconds = str2nr(strftime('%S'))
+execute 'colorscheme '.schemes[seconds%11]
+redraw
+au VimEnter * execute "echo g:colors_name"
