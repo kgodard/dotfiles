@@ -315,9 +315,6 @@ inoremap kk #{}<Left>
 " jump to end of line and keep editing
 inoremap ;; <Esc> A
 
-" space-bar centering
-nmap <space> zz
-
 " html line break
 " imap <C-Enter> <br/>
 
@@ -332,7 +329,7 @@ map <leader>m :bd <cr> :e <cr>
 nmap <leader><leader>q :bufdo bdelete <cr>
 
 " close all buffers except current
-nmap <leader><leader>o :BufOnly <cr>
+" nmap <leader><leader>o :BufOnly <cr>
 
 " ---------------
 " Leader Commands
