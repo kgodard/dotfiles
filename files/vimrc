@@ -800,5 +800,10 @@ let schemes=sort(filter(copy(list), 'index(list, v:val, v:key+1)==-1'))
 let seconds = str2nr(strftime('%S'))
 execute 'colorscheme '.schemes[seconds%11]
 redraw
-au VimEnter * execute "SetColors all"
-au VimEnter * execute "echo g:colors_name"
+augroup vimrc_autocmds
+  au VimEnter * execute "SetColors all"
+  au VimEnter * execute "echo g:colors_name"
+  " These commands auto-highlight all text past 73 columns
+  " au BufEnter * highlight OverLength ctermbg=darkgrey guibg=#592929
+  " au BufEnter * match OverLength /\%74v.*/
+augroup END
