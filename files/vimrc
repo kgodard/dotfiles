@@ -338,12 +338,14 @@ nmap <leader><leader>q :bufdo bdelete <cr>
 " ---------------
 nmap <leader><leader>c :colorscheme <cr>
 
+" insert lorem ipsum paragraph
+nmap <leader><leader>l :Loremipsum <cr>
+
 " scratch buffers
 " open buffer horizontal
 " map <leader>b :TScratch <cr>
 " open buffer in current window
 " map <leader><leader>b :TScratch! <cr>
-
 
 " open shell
 " map <leader><leader>s :sh <cr>
