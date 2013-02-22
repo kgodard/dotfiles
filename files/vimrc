@@ -219,6 +219,7 @@ set cf                 " Enable error files & error jumping.
 set autowrite          " Writes on make/shell commands
 set timeoutlen=350     " Time to wait for a command (after leader for example)
 set foldlevelstart=999 " Remove folds
+set tw=72              " Set text width to 72 cols
 set formatoptions=crql " autowrap comments; autoinsert comment char on newline; gq formats comments; don't autoformat long lines
 
 " ---------------
