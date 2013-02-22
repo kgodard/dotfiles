@@ -113,6 +113,7 @@ Bundle 'kana/vim-textobj-user'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'argtextobj.vim'
+Bundle 'vim-scripts/loremipsum'
 
 " Services
 Bundle 'mattn/gist-vim'
@@ -776,9 +777,9 @@ vmap <leader>x :!xmllint --format --recover --nowarning -<CR>
 " ---------------
 " Text Formatting
 " ---------------
-set formatprg=par\ -w80
-map <A-q> {v}!par -jw80<CR>
-vmap <A-q> !par -jw80<CR>
+set formatprg=par\ -w72
+map <A-q> {v}!par -jw72<CR>
+vmap <A-q> !par -jw72<CR>
 
 
 " ---------------

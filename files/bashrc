@@ -8,6 +8,10 @@ export RUBY_GC_MALLOC_LIMIT=79000000
 
 #my stuff
 #alias git commands to use hub
+alias int='cd ~/Development/intellisource_clean'
+alias cep='cd ~/Development/consumer_engagement_portal'
+alias port='cd ~/Development/intellisource_clean/portal'
+alias pua='cd ~/Development/intellisource_clean/portal_user_api'
 alias gbr="git for-each-ref --sort=-committerdate --format='%(refname)' refs/heads/ | sed -e 's|refs/heads/||' | head -n 5"
 alias rdstart='brake daemons:resque:start'
 alias rdstop='brake daemons:resque:stop'
