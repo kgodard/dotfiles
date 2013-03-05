@@ -1,0 +1,429 @@
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" My Bundles here:
+"
+" original repos on github
+Bundle 'tpope/vim-fugitive'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'tpope/vim-rails.git'
+Bundle 'kien/ctrlp.vim'
+Bundle 'edsono/vim-matchit'
+Bundle 'vim-scripts/bufexplorer.zip'
+Bundle 'majutsushi/tagbar'
+Bundle 'scrooloose/nerdtree'
+" Colors
+Bundle 'tomasr/molokai'
+Bundle 'mutewinter/ir_black_mod'
+Bundle 'vim-scripts/blackboard.vim'
+Bundle 'twe4ked/vim-colorscheme-switcher'
+Bundle 'vim-scripts/tComment'
+Bundle 'tpope/vim-surround'
+Bundle 'sickill/vim-pasta'
+Bundle 'godlygeek/tabular'
+Bundle 'scrooloose/syntastic'
+Bundle 'ervandew/supertab'
+Bundle 'gregsexton/MatchTag'
+Bundle 'Shougo/neocomplcache'
+" Language Additions
+Bundle 'nono/vim-handlebars'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'tpope/vim-haml'
+Bundle 'pangloss/vim-javascript'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'itspriddle/vim-jquery'
+Bundle 'tpope/vim-rails'
+Bundle 'mutewinter/taskpaper.vim'
+Bundle 'leshill/vim-json'
+Bundle 'mutewinter/nginx.vim'
+Bundle 'tpope/vim-rake'
+Bundle 'timcharper/textile.vim'
+Bundle 'tpope/vim-endwise'
+Bundle 'thisivan/vim-ruby-matchit'
+Bundle 'tpope/vim-cucumber'
+Bundle 'tpope/vim-markdown'
+Bundle 'jgoulah/cocoa.vim'
+Bundle 'css3'
+Bundle 'othree/html5-syntax.vim'
+Bundle 'thomd/vim-jasmine'
+" Testing
+Bundle 'skalnik/vim-vroom'
+" Text Objects
+" Bundle 'nelstrom/vim-textobj-rubyblock'
+Bundle 'michaeljsmith/vim-indent-object'
+Bundle 'argtextobj.vim'
+Bundle 'vim-scripts/loremipsum'
+" Libraries
+Bundle 'L9'
+Bundle 'tpope/vim-repeat'
+
+filetype plugin indent on  " Automatically detect file types. (must turn on after Vundle)
+
+" map a leader
+let mapleader = ","
+
+" ---------------
+" NO Backups
+" ---------------
+set nobackup
+set noswapfile
+" set backupdir=~/.vim/backup
+" set directory=~/.vim/tmp
+
+" ---------------
+" UI
+" ---------------
+set ruler         " Ruler on
+set number        " Line numbers on
+set nowrap          " Line wrapping on
+set cursorline    " Whole line higlighted
+set laststatus=2  " Always show the statusline
+set cmdheight=1   " Two lines for command line.
+set list          " Show trailing spaces and tabs
+set listchars=tab:>-,trail:.,nbsp:.
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+
+" ---------------
+" Behaviors
+" ---------------
+syntax enable
+set autoread           " Automatically reload changes if detected
+set wildmenu           " Turn on WiLd menu
+set hidden             " Change buffer - without saving
+set history=1024       " Number of things to remember in history.
+set cf                 " Enable error files & error jumping.
+" set clipboard+=unnamed " Yanks go on clipboard instead.
+set autowrite          " Writes on make/shell commands
+set timeoutlen=350     " Time to wait for a command (after leader for example)
+set foldlevelstart=999 " Remove folds
+set tw=72              " Set text width to 72 cols
+set formatoptions=crql " autowrap comments; autoinsert comment char on newline; gq formats comments; don't autoformat long lines
+
+" ---------------
+" Text Format
+" ---------------
+set tabstop=2
+set backspace=2  " Delete everything with backspace
+set shiftwidth=2 " Tabs under smart indent
+set cindent
+set autoindent
+set smarttab
+set expandtab    " hitting <tab> inserts two spaces
+
+" ---------------
+" Searching
+" ---------------
+set ignorecase " Case insensitive search
+set smartcase  " Non-case sensitive search
+set incsearch
+set hlsearch
+set wildignore+=*.o,*.obj,*.exe,*.so,*.dll,*.pyc,.svn,.hg,.bzr,.git,.sass-cache
+
+" set tags file location
+set tags=./tags;
+
+" regenerate ctags
+map <Leader>rt :!ctags --extra=+f --exclude=.git --exclude=log -R *<CR><CR>
+map <Leader>ra :!ctags --extra=+f --exclude=.git --exclude=log -R ../*<CR><CR>
+
+" go to symbol!
+map <Leader>d :TagbarToggle <cr>
+
+" use Ack instead of grep
+set grepprg=ack
+
+" ctrl-n, ctrl-p
+map <C-n> :cn <cr>
+map <C-p> :cp <cr>
+
+" cursor highlight toggle
+:nnoremap H :set cursorline!<CR>
+
+" ---------------
+" Visual
+" ---------------
+set showmatch   " Show matching brackets.
+set matchtime=2 " How many tenths of a second to blink
+
+" ---------------
+" Sounds
+" ---------------
+set noerrorbells
+set novisualbell
+set t_vb=
+
+" ---------------
+" Mouse
+" ---------------
+set mousehide " Hide mouse after chars typed
+set mouse=a   " Mouse in all modes
+
+" double percentage sign in command mode is expanded
+" to directory of current file - http://vimcasts.org/e/14
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+
+" map double j to escape to exit insert mode
+inoremap jj <Esc>
+
+" map for hashrocket
+imap <C-e> <C-R>=expand(' => ')<CR>
+
+" map for ruby interpolation brackets
+inoremap kk #{}<Left>
+
+" jump to end of line and keep editing
+inoremap ;; <Esc> A
+
+" html line break
+" imap <C-Enter> <br/>
+
+" previous and next buffers
+map [ :bp<CR>
+map ] :bn<CR>
+
+" delete current buffer (the :e is to reload the file and restore syntax color (minibufexp bug)
+map <leader>m :bd <cr> :e <cr>
+
+" close all buffers
+nmap <leader><leader>q :bufdo bdelete <cr>
+
+" ---------------
+" Leader Commands
+" ---------------
+nmap <leader><leader>c :colorscheme <cr>
+
+" insert lorem ipsum paragraph
+nmap <leader><leader>l :Loremipsum <cr>
+
+" leader s saving
+map <leader>s :w <cr>
+
+" edit another file in the same directory as current file
+map <leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
+
+",v brings up my .vimrc
+",r reloads it -- making all changes active (have to save first)
+map <leader>v :e ~/.dotfiles/files/vimrc_nogui<CR>
+map <silent> <leader>r :so ~/.vimrc<CR>:exe ":echo 'vimrc reloaded'"<CR>
+
+" Setting toggles
+nmap <leader>sn :set number!<CR>
+nmap <leader>ss :set spell!<CR>
+
+" Hide highlighted search terms
+nnoremap <silent> <leader><space> :nohl<CR>
+
+" Window Splitting
+nmap <silent> <leader>sh :split<CR>
+nmap <silent> <leader>sv :vsplit<CR>
+
+" Window Resizing
+nmap - <C-w>-
+nmap = <C-w>+
+nmap _ <C-w><
+nmap + <C-w>>
+
+" ----------------------------------------
+" Auto Commands
+" ----------------------------------------
+
+if has("autocmd")
+
+  " Auto-set filetyp for erb templates
+  " autocmd FileType eruby set ft=html.eruby.eruby-rails
+
+  " No formatting on o key newlines
+  autocmd BufNewFile,BufEnter * set formatoptions-=o
+
+  " No more complaining about untitled documents
+  autocmd FocusLost silent! :wa
+
+  " When editing a file, always jump to the last cursor position.
+  " This must be after the uncompress commands.
+  autocmd BufReadPost *
+        \ if line("'\"") > 1 && line ("'\"") <= line("$") |
+        \   exe "normal! g`\"" |
+        \ endif
+endif
+
+
+" ----------------------------------------
+" Make Top and Bottom Lines
+" ----------------------------------------
+nnoremap <leader>== yyPv$r=jyypv$r=
+nnoremap <leader>-- yyPv$r-jyypv$r-
+nnoremap <leader>## yyPv$r#jyypv$r#
+nnoremap <leader>** yyPv$r*jyypv$r*
+nnoremap <leader>=  yypv$r=
+nnoremap <leader>-  yypv$r-
+nnoremap <leader>^  yypv$r^
+nnoremap <leader>"  yypv$r"
+
+" ---------------
+" TComment
+" ---------------
+map <leader>cc :TComment <cr>
+map <C-m> :TComment <cr>
+
+" ---------------
+" IndentGuides
+" ---------------
+" autocmd VimEnter * IndentGuidesDisable
+nmap <silent> <leader>si :IndentGuidesToggle<CR>
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_enable_on_vim_startup = 0
+
+" ---------------
+" SuperTab
+" ---------------
+" Set these up for cross-buffer completion (something Neocachecompl has a hard time with)
+let g:SuperTabDefaultCompletionType="<c-x><c-n>"
+let g:SuperTabContextDefaultCompletionType="<c-x><c-n>"
+
+" ---------------
+" Neocachecompl
+" ---------------
+let g:neocomplcache_enable_at_startup=1
+let g:neocomplcache_enable_auto_select=1 "Select the first entry automatically
+let g:neocomplcache_enable_cursor_hold_i=1
+let g:neocomplcache_cursor_hold_i_time=300
+let g:neocomplcache_auto_completion_start_length=3
+
+" Tab / Shift-Tab to cycle completions
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+
+" ---------------
+" Syntastic
+" ---------------
+" let g:syntastic_auto_loc_list=1
+let g:syntastic_enable_signs=1
+let g:syntastic_quiet_warnings=1
+let g:syntastic_disabled_filetypes=['scss'] " Disable .sh on Windows
+
+" ---------------
+" NERDTree
+" ---------------
+let g:NERDTreeDirArrows=0 " without this nerdtree breaks in non-gui vim
+nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
+let NERDTreeShowBookmarks=1
+let NERDTreeChDirMode=2 " Change the NERDTree directory to the root node
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" ---------------
+" Indent Guides
+" ---------------
+let g:indent_guides_auto_colors=1
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_color_change_percent=5
+
+if has('unix') && !has('gui_macvim')
+  if $TERM == 'xterm-256color'
+    " Make the guides smaller since they will be crazy visible in 256color mode
+    let g:indent_guides_guide_size=1
+  else
+    " Turn off the guides when 256color mode isn't available
+    let g:indent_guides_enable_on_vim_startup=0
+  endif
+endif
+
+" ---------------
+" Tabular
+" ---------------
+nmap <leader>t= :Tabularize /=<CR>
+vmap <leader>t= :Tabularize /=<CR>
+nmap <leader>t: :Tabularize /:\zs<CR>
+vmap <leader>t: :Tabularize /:\zs<CR>
+nmap <leader>t, :Tabularize /,\zs<CR>
+vmap <leader>t, :Tabularize /,\zs<CR>
+nmap <leader>t> :Tabularize /=><CR>
+vmap <leader>t> :Tabularize /=><CR>
+vmap <leader>ts :Tabularize / /l0<CR>
+nmap <leader>ts :Tabularize / /l0<CR>
+
+" ---------------
+" Zoomwin
+" ---------------
+" Zoom Window to Full Size
+nmap <silent> <leader>wo :ZoomWin<CR>
+
+" ctrlp.vim Options we always use
+nnoremap <leader>p :CtrlP<CR>
+nnoremap <leader><leader>p :CtrlP ../common<CR>
+let g:ctrlp_max_height = 100
+let g:ctrlp_working_path_mode = 'r'
+
+" ---------------
+" Align tables
+" tpope: https://gist.github.com/287147
+" ---------------
+
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction
+
+" ---------------
+" Fix Trailing White Space
+" ---------------
+map <leader>ws :%s/\s\+$//e<CR>
+command! FixTrailingWhiteSpace :%s/\s\+$//e
+
+" ---------------
+" Pretty XML
+" ---------------
+vmap <leader>x :!xmllint --format --recover --nowarning -<CR>
+
+" ---------------
+" Text Formatting
+" ---------------
+set formatprg=par\ -w72
+map <A-q> {v}!par -jw72<CR>
+vmap <A-q> !par -jw72<CR>
+
+
+" ---------------
+" Move Lines
+" ---------------
+nnoremap <A-j> :m+<CR>==
+nnoremap <A-k> :m-2<CR>==
+inoremap <A-j> <Esc>:m+<CR>==gi
+inoremap <A-k> <Esc>:m-2<CR>==gi
+vnoremap <A-j> :m'>+<CR>gv=gv
+vnoremap <A-k> :m-2<CR>gv=gv
+
+" set random colorscheme
+" let paths = split(globpath(&runtimepath, 'colors/*.vim'), "\n")
+" let list = map(paths, 'fnamemodify(v:val, ":t:r")')
+" let schemes=sort(filter(copy(list), 'index(list, v:val, v:key+1)==-1'))
+" let seconds = str2nr(strftime('%S'))
+" execute 'colorscheme '.schemes[seconds%11]
+" redraw
+
+" just set a colorscheme
+colorscheme slate
+hi CursorLine cterm=NONE ctermbg=darkgrey ctermfg=white
+
+augroup vimrc_autocmds
+  au VimEnter * execute "SetColors all"
+  " au VimEnter * execute "echo g:colors_name"
+  " These commands auto-highlight all text past 73 columns
+  " au BufEnter * highlight OverLength ctermbg=darkgrey guibg=#592929
+  " au BufEnter * match OverLength /\%74v.*/
+augroup END
