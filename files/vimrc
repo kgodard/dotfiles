@@ -16,6 +16,9 @@ Bundle 'gmarik/vundle'
 " Bundle 'duff/vim-scratch.git'
 " sweetvim-rspec
 " Bundle 'duskhacker/sweet-rspec-vim'
+
+" Specs
+" Bundle 'rson/vim-conque'
 " Bundle 'skwp/vim-ruby-conque'
 
 " Navigation
@@ -223,6 +226,14 @@ set tw=72              " Set text width to 72 cols
 set formatoptions=crql " autowrap comments; autoinsert comment char on newline; gq formats comments; don't autoformat long lines
 
 " ---------------
+" Folding Settings
+" ---------------
+set foldmethod=indent   "fold based on indent
+set foldnestmax=10      "deepest fold is 10 levels
+set nofoldenable        "dont fold by default
+set foldlevel=1         "this is just what i use
+
+" ---------------
 " Text Format
 " ---------------
 set tabstop=2
@@ -321,8 +332,8 @@ inoremap ;; <Esc> A
 " imap <C-Enter> <br/>
 
 " previous and next buffers
-map [ :bp<CR>
-map ] :bn<CR>
+" map [ :bp<CR>
+" map ] :bn<CR>
 
 " delete current buffer (the :e is to reload the file and restore syntax color (minibufexp bug)
 map <leader>m :bd <cr> :e <cr>
@@ -795,13 +806,19 @@ inoremap <A-k> <Esc>:m-2<CR>==gi
 vnoremap <A-j> :m'>+<CR>gv=gv
 vnoremap <A-k> :m-2<CR>gv=gv
 
-" set random colorscheme
-let paths = split(globpath(&runtimepath, 'colors/*.vim'), "\n")
-let list = map(paths, 'fnamemodify(v:val, ":t:r")')
-let schemes=sort(filter(copy(list), 'index(list, v:val, v:key+1)==-1'))
-let seconds = str2nr(strftime('%S'))
-execute 'colorscheme '.schemes[seconds%11]
-redraw
+" ---------------
+" Color Scheme
+" ---------------
+" ** set random colorscheme **
+" let paths = split(globpath(&runtimepath, 'colors/*.vim'), "\n")
+" let list = map(paths, 'fnamemodify(v:val, ":t:r")')
+" let schemes=sort(filter(copy(list), 'index(list, v:val, v:key+1)==-1'))
+" let seconds = str2nr(strftime('%S'))
+" execute 'colorscheme '.schemes[seconds%11]
+" redraw
+colorscheme macvim
+set bg=light
+
 augroup vimrc_autocmds
   au VimEnter * execute "SetColors all"
   au VimEnter * execute "echo g:colors_name"
