@@ -48,6 +48,7 @@ Bundle 'scrooloose/nerdtree'
 " Bundle 'rosenfeld/conque-term'
 
 " Colors
+Bundle 'altercation/vim-colors-solarized'
 Bundle 'tomasr/molokai'
 Bundle 'mutewinter/ir_black_mod'
 Bundle 'vim-scripts/blackboard.vim'
@@ -396,7 +397,7 @@ nmap <silent> <leader>sh :split<CR>
 nmap <silent> <leader>sv :vsplit<CR>
 
 " Window Movement
-" nmap , <C-w><C-w>
+nmap <leader>w :winc w<CR>
 
 " Window Resizing
 nmap - <C-w>-
