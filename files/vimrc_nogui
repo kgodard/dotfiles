@@ -144,7 +144,7 @@ map <C-n> :cn <cr>
 map <C-p> :cp <cr>
 
 " cursor highlight toggle
-:nnoremap H :set cursorline!<CR>
+:nnoremap <Leader>l :set cursorline!<CR>
 
 " ---------------
 " Visual
@@ -229,6 +229,9 @@ nmap - <C-w>-
 nmap = <C-w>+
 nmap _ <C-w><
 nmap + <C-w>>
+
+" Window switching
+nmap <Leader>w :winc w<CR>
 
 " ----------------------------------------
 " Auto Commands
