@@ -817,8 +817,8 @@ vnoremap <A-k> :m-2<CR>gv=gv
 " let seconds = str2nr(strftime('%S'))
 " execute 'colorscheme '.schemes[seconds%11]
 " redraw
-colorscheme macvim
-set bg=light
+colorscheme solarized
+set bg=dark
 
 augroup vimrc_autocmds
   au VimEnter * execute "SetColors all"
