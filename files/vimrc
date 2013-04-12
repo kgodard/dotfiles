@@ -819,6 +819,8 @@ vnoremap <A-k> :m-2<CR>gv=gv
 " redraw
 colorscheme solarized
 set bg=dark
+" toggle between light and dark with F5
+call togglebg#map("<F5>")
 
 augroup vimrc_autocmds
   au VimEnter * execute "SetColors all"
