@@ -48,6 +48,7 @@ Bundle 'scrooloose/nerdtree'
 " Bundle 'rosenfeld/conque-term'
 
 " Colors
+Bundle 'endel/vim-github-colorscheme'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'tomasr/molokai'
 Bundle 'mutewinter/ir_black_mod'
@@ -820,7 +821,7 @@ vnoremap <A-k> :m-2<CR>gv=gv
 colorscheme solarized
 set bg=dark
 " toggle between light and dark with F5
-call togglebg#map("<F5>")
+call togglebg#map("<F6>")
 
 augroup vimrc_autocmds
   au VimEnter * execute "SetColors all"
