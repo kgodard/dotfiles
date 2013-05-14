@@ -54,6 +54,7 @@ Bundle 'tomasr/molokai'
 Bundle 'mutewinter/ir_black_mod'
 Bundle 'vim-scripts/blackboard.vim'
 Bundle 'twe4ked/vim-colorscheme-switcher'
+Bundle 'tpope/vim-vividchalk'
 
 " Commands
 " Bundle 'scrooloose/nerdcommenter'
