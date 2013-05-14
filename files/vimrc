@@ -55,6 +55,7 @@ Bundle 'mutewinter/ir_black_mod'
 Bundle 'vim-scripts/blackboard.vim'
 Bundle 'twe4ked/vim-colorscheme-switcher'
 Bundle 'tpope/vim-vividchalk'
+Bundle 'morhetz/gruvbox'
 
 " Commands
 " Bundle 'scrooloose/nerdcommenter'
@@ -819,8 +820,8 @@ vnoremap <A-k> :m-2<CR>gv=gv
 " let seconds = str2nr(strftime('%S'))
 " execute 'colorscheme '.schemes[seconds%11]
 " redraw
-colorscheme solarized
-set bg=dark
+colorscheme gruvbox
+" set bg=dark
 " toggle between light and dark with F5
 call togglebg#map("<F6>")
 
