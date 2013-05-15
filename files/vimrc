@@ -821,7 +821,7 @@ vnoremap <A-k> :m-2<CR>gv=gv
 " execute 'colorscheme '.schemes[seconds%11]
 " redraw
 colorscheme gruvbox
-" set bg=dark
+set bg=dark
 " toggle between light and dark with F5
 call togglebg#map("<F6>")
 
