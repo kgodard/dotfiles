@@ -1,0 +1,52 @@
+" double percentage sign in command mode is expanded
+" to directory of current file - http://vimcasts.org/e/14
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+
+" map double j to escape to exit insert mode
+inoremap jj <Esc>
+
+" jump to end of line and keep editing
+inoremap ;; <Esc> A
+
+" ---------------
+" Leader Commands
+" ---------------
+nmap <leader><leader>c :colorscheme <cr>
+
+" leader s saving
+map <leader>s :w <cr>
+
+" edit another file in the same directory as current file
+map <leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
+
+" Window Resizing
+nmap - <C-w>-
+nmap = <C-w>+
+nmap _ <C-w><
+nmap + <C-w>>
+
+" ctrlp.vim Options we always use
+nnoremap <leader>p :CtrlP<CR>
+nnoremap <leader><leader>p :CtrlP ../common<CR>
+let g:ctrlp_max_height = 100
+let g:ctrlp_working_path_mode = 'r'
+
+" ---------------
+" NERDTree
+" ---------------
+nnoremap <leader>t :NERDTreeToggle<CR>
+
+" toggle between light and dark with F6
+call togglebg#map("<F6>")
+
+" Window Movement
+nmap <leader>w :winc w<CR>
+
+" go to symbol!
+map <Leader>d :TagbarToggle <cr>
+
+" map for hashrocket
+imap <C-e> <C-R>=expand(' => ')<CR>
+
+" map for ruby interpolation brackets
+inoremap kk #{}<Left>

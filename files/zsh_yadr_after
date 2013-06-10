@@ -1,0 +1,72 @@
+# http://www.reddit.com/r/ruby/comments/wgtqj/how_i_spend_my_time_building_rails_apps/c5daer4
+# More suitable settings for ruby when running rails apps
+export RUBY_HEAP_MIN_SLOTS=800000
+export RUBY_HEAP_FREE_MIN=100000
+export RUBY_HEAP_SLOTS_INCREMENT=300000
+export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
+export RUBY_GC_MALLOC_LIMIT=79000000
+
+#my stuff
+alias glc='git log --pretty=format:"%h [%an] %s"'
+#work
+alias labsnap='comv db import -m create ../../snapshots-intellisource/lab_data.{ddl,sql}'
+alias gr2='cd ~/Development/External/grez_projects/grez2'
+alias wj='cd ~/Development/External/wholejourneys.com'
+alias ext='cd ~/Development/External'
+alias z='zeus'
+alias fixulimit='ulimit -n 2560'
+alias int='cd ~/Development/intellisource_clean'
+alias cep='cd ~/Development/consumer_engagement_portal'
+alias port='cd ~/Development/intellisource_clean/portal'
+alias pua='cd ~/Development/intellisource_clean/portal_user_api'
+alias gbr="git for-each-ref --sort=-committerdate --format='%(refname)' refs/heads/ | sed -e 's|refs/heads/||' | head -n 5"
+alias rdstart='brake daemons:resque:start'
+alias rdstop='brake daemons:resque:stop'
+alias rtstart='brake daemons:test:resque:start'
+alias rtstop='brake daemons:test:resque:stop'
+alias ap='cd ~/Development/intellisource_clean/apollo'
+alias precomp='RAILS_ENV=production bundle exec rake assets:precompile'
+alias brake='bundle exec rake'
+alias be='bundle exec'
+alias h='heroku'
+alias co='git checkout'
+alias gb='git branch'
+
+# vagrant stuff
+alias vs='vagrant status'
+alias vu='vagrant up'
+alias vsh='vagrant ssh'
+alias vh='vagrant halt'
+alias vsp='vagrant suspend'
+alias vbl='vagrant box list'
+
+# git aliases from peepcode
+alias gst='git status'
+alias gl='git pull --rebase'
+alias gp='git push'
+alias gd='git diff'
+alias gc='git commit -v'
+alias gca='git commit -v -a'
+alias gb='git branch'
+alias gba='git branch -a'
+alias gdf='git diff-files -p --color'
+alias grestore='git checkout HEAD --'
+alias gu='git gui &'
+alias gk='gitk --all &'
+alias gcq='git commit -a -m'
+alias gsl='git stash list'
+alias gss='git stash save'
+alias gsp='git stash pop'
+alias gg='git grep'
+alias rsp='bundle exec rspec -d --drb --require ../common/lib/testing/rspec_timing_formatters.rb --format Testing::TimedDocumentationFormatter'
+alias ss='script/server'
+
+# Some shortcuts for different directory listings
+alias ls='ls -lhFG'                             # classify files in colour
+alias la='ls -lahFG'                            # classify files in colour
+alias dir='ls -FG'                              # wide format
+alias ld='ls -lp | grep "/"'                   # dirs only
+
+# for cool less functionality
+export LESS='-nfr'
+
