@@ -1,2 +1,3 @@
 Bundle "vim-scripts/bufexplorer.zip"
 Bundle "morhetz/gruvbox"
+Bundle "nono/vim-handlebars"

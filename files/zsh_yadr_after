@@ -69,4 +69,4 @@ alias ld='ls -lp | grep "/"'                   # dirs only
 
 # for cool less functionality
 export LESS='-nfr'
-
+prompt kylewest

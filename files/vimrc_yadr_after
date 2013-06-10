@@ -50,3 +50,7 @@ imap <C-e> <C-R>=expand(' => ')<CR>
 
 " map for ruby interpolation brackets
 inoremap kk #{}<Left>
+
+" set colorscheme
+colorscheme gruvbox
+
