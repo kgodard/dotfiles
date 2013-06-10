@@ -52,5 +52,5 @@ imap <C-e> <C-R>=expand(' => ')<CR>
 inoremap kk #{}<Left>
 
 " set colorscheme
-colorscheme gruvbox
+" colorscheme gruvbox
 
