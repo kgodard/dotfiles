@@ -51,6 +51,26 @@ imap <C-e> <C-R>=expand(' => ')<CR>
 " map for ruby interpolation brackets
 inoremap kk #{}<Left>
 
+" ---------------
+" SuperTab
+" ---------------
+" Set these up for cross-buffer completion (something Neocachecompl has a hard time with)
+let g:SuperTabDefaultCompletionType="<c-x><c-n>"
+let g:SuperTabContextDefaultCompletionType="<c-x><c-n>"
+
+" ---------------
+" Neocachecompl
+" ---------------
+" let g:neocomplcache_enable_at_startup=1
+let g:neocomplcache_enable_auto_select=1 "Select the first entry automatically
+let g:neocomplcache_enable_cursor_hold_i=1
+let g:neocomplcache_cursor_hold_i_time=300
+" let g:neocomplcache_auto_completion_start_length=3
+
+" Tab / Shift-Tab to cycle completions
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+
 " set colorscheme
 " colorscheme gruvbox
 
