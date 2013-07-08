@@ -7,7 +7,8 @@ export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 export RUBY_GC_MALLOC_LIMIT=79000000
 
 #my stuff
-alias glc='git log --pretty=format:"%h %ad [%an] %s" --date=short'
+alias glc='git log --pretty=format:"%Cred %h %Cgreen %ad %Cblue [%an] %Cgreen %s" --date=short'
+alias gld='git log --oneline --decorate'
 #work
 alias labsnap='comv db import -m create ../../snapshots-intellisource/lab_data.{ddl,sql}'
 alias gr2='cd ~/Development/External/grez_projects/grez2'
