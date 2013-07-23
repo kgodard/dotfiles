@@ -7,6 +7,7 @@ export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 export RUBY_GC_MALLOC_LIMIT=79000000
 
 #my stuff
+alias ipsim='open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/De‌​veloper/Applications/iPhone\ Simulator.app'
 alias glc='git log --pretty=format:"%Cred %h %Cgreen %ad %Cblue [%an] %Cgreen %s" --date=short'
 alias gld='git log --oneline --decorate'
 #work

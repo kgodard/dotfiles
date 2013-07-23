@@ -48,14 +48,15 @@ Bundle 'scrooloose/nerdtree'
 " Bundle 'rosenfeld/conque-term'
 
 " Colors
-Bundle 'endel/vim-github-colorscheme'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'tomasr/molokai'
+" Bundle 'endel/vim-github-colorscheme'
+" Bundle 'altercation/vim-colors-solarized'
+" Bundle 'tomasr/molokai'
+" Bundle 'vim-scripts/blackboard.vim'
+" Bundle 'tpope/vim-vividchalk'
+Bundle 'flazz/vim-colorschemes'
 Bundle 'mutewinter/ir_black_mod'
-Bundle 'vim-scripts/blackboard.vim'
-Bundle 'twe4ked/vim-colorscheme-switcher'
-Bundle 'tpope/vim-vividchalk'
 Bundle 'morhetz/gruvbox'
+Bundle 'twe4ked/vim-colorscheme-switcher'
 
 " Commands
 " Bundle 'scrooloose/nerdcommenter'
@@ -81,6 +82,8 @@ Bundle 'gregsexton/MatchTag'
 Bundle 'Shougo/neocomplcache'
 " allows cycling through recent yanks/deletes
 Bundle 'vim-scripts/YankRing.vim'
+" rapid html generation
+Bundle 'kogakure/vim-sparkup'
 
 " Language Additions
 Bundle 'nono/vim-handlebars'
@@ -93,7 +96,7 @@ Bundle 'tpope/vim-rails'
 Bundle 'mutewinter/taskpaper.vim'
 Bundle 'leshill/vim-json'
 Bundle 'mutewinter/nginx.vim'
-Bundle 'tpope/vim-rake'
+" Bundle 'tpope/vim-rake'
 Bundle 'timcharper/textile.vim'
 Bundle 'tpope/vim-endwise'
 Bundle 'thisivan/vim-ruby-matchit'
@@ -106,7 +109,9 @@ endif
 
 Bundle 'css3'
 Bundle 'othree/html5-syntax.vim'
+Bundle 'othree/javascript-libraries-syntax.vim'
 Bundle 'thomd/vim-jasmine'
+Bundle 'lunaru/vim-less'
 
 " Testing
 Bundle 'skalnik/vim-vroom'
@@ -155,8 +160,8 @@ if has('win32') || has('win64')
   cd ~
 elseif has('gui_macvim')
   " MacVim
-  " set guifont=Monaco:h16
-  set guifont=Menlo:h16
+  " set guifont=Monaco:h14
+  set guifont=Menlo:h14
 
   " Hide Toolbar in MacVim
   if has("gui_running")
@@ -823,7 +828,8 @@ vnoremap <A-k> :m-2<CR>gv=gv
 colorscheme gruvbox
 set bg=dark
 " toggle between light and dark with F5
-call togglebg#map("<F6>")
+map <F6> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
+" call togglebg#map("<F6>")
 
 augroup vimrc_autocmds
   au VimEnter * execute "SetColors all"
