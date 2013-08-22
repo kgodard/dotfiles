@@ -39,7 +39,8 @@ Bundle 'Lokaltog/vim-easymotion'
 
 " UI Additions
 Bundle 'mutewinter/vim-indent-guides'
-Bundle 'Lokaltog/vim-powerline'
+" Bundle 'Lokaltog/vim-powerline'
+Bundle 'bling/vim-airline'
 Bundle 'scrooloose/nerdtree'
 " Bundle 'Rykka/colorv.vim'
 " Bundle 'sjl/gundo.vim'
@@ -161,7 +162,8 @@ if has('win32') || has('win64')
 elseif has('gui_macvim')
   " MacVim
   " set guifont=Monaco:h14
-  set guifont=Menlo:h14
+  " set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
+  set guifont=Source\ Code\ Pro\ for\ Powerline:h14
 
   " Hide Toolbar in MacVim
   if has("gui_running")
@@ -176,6 +178,8 @@ elseif has('gui_macvim')
   " Use option (alt) as meta key.
   set macmeta
 endif
+
+let g:airline_powerline_fonts = 1
 
 " ----------------------------------------
 " Color Scheme SETTING RANDOM - SEE LAST LINE
@@ -804,6 +808,11 @@ set formatprg=par\ -w72
 map <A-q> {v}!par -jw72<CR>
 vmap <A-q> !par -jw72<CR>
 
+" ------------------
+" Scrolling Settings
+" ------------------
+set scrolloff=12 " Keep 12 lines below and above the cursor
+" set scrolloff=9999 " Always keep cursor centered in page
 
 " ---------------
 " Move Lines
@@ -825,7 +834,7 @@ vnoremap <A-k> :m-2<CR>gv=gv
 " let seconds = str2nr(strftime('%S'))
 " execute 'colorscheme '.schemes[seconds%11]
 " redraw
-colorscheme gruvbox
+colorscheme solarized
 set bg=dark
 " toggle between light and dark with F5
 map <F6> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
