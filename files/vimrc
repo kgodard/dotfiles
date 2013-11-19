@@ -115,7 +115,7 @@ Bundle 'thomd/vim-jasmine'
 Bundle 'lunaru/vim-less'
 
 " Testing
-Bundle 'skalnik/vim-vroom'
+Bundle 'tpope/vim-dispatch'
 
 "Snippets
 Bundle "garbas/vim-snipmate"
@@ -163,7 +163,7 @@ elseif has('gui_macvim')
   " MacVim
   " set guifont=Monaco:h14
   " set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
-  set guifont=Source\ Code\ Pro\ for\ Powerline:h14
+  set guifont=Source\ Code\ Pro\ for\ Powerline:h20
 
   " Hide Toolbar in MacVim
   if has("gui_running")
@@ -318,6 +318,16 @@ set complete=.,w,b,u,U,b,]
 " map <F1> <Esc>
 " imap <F1> <Esc>
 
+" Run specs with F9!!
+map <F9> :Dispatch spring rspec %<CR>
+" Add a line number
+map <F10> :Dispatch spring rspec %:
+
+" zeus specs
+map <F2> :Dispatch zeus rspec %<CR>
+" Add a line number
+map <F3> :Dispatch zeus rspec %:
+
 " Removes doc lookup binding because it's easy to fat finger
 nmap K k
 vmap K k
@@ -348,8 +358,14 @@ inoremap ;; <Esc> A
 " map [ :bp<CR>
 " map ] :bn<CR>
 
+" mappings for DIFFing
+" diff current buffer
+map <leader>f :Gdiff <cr>
+" stop diffing current buffer
+map <leader>k :diffoff <bar> :only <cr>
+
 " delete current buffer (the :e is to reload the file and restore syntax color (minibufexp bug)
-map <leader>m :bd <cr> :e <cr>
+map <leader>m :bd <bar> :e <cr>
 
 " close all buffers
 nmap <leader><leader>q :bufdo bdelete <cr>
@@ -834,9 +850,9 @@ vnoremap <A-k> :m-2<CR>gv=gv
 " let seconds = str2nr(strftime('%S'))
 " execute 'colorscheme '.schemes[seconds%11]
 " redraw
-colorscheme solarized
-set bg=dark
-" toggle between light and dark with F5
+colorscheme blackboard
+" set bg=dark
+" toggle between light and dark with F6
 map <F6> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 " call togglebg#map("<F6>")
 
