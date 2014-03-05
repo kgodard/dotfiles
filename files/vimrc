@@ -38,7 +38,7 @@ Bundle 'christoomey/vim-space'
 Bundle 'Lokaltog/vim-easymotion'
 
 " UI Additions
-Bundle 'mutewinter/vim-indent-guides'
+Bundle 'nathanaelkane/vim-indent-guides'
 " Bundle 'Lokaltog/vim-powerline'
 Bundle 'bling/vim-airline'
 Bundle 'scrooloose/nerdtree'
@@ -71,11 +71,11 @@ Bundle 'sickill/vim-pasta'
 Bundle 'mileszs/ack.vim'
 Bundle 'gmarik/sudo-gui.vim'
 Bundle 'milkypostman/vim-togglelist'
-Bundle 'wojtekmach/vim-rename'
+Bundle 'danro/rename.vim'
 
 " Automatic Helpers
 Bundle 'IndexedSearch'
-Bundle 'xolox/vim-session'
+" Bundle 'xolox/vim-session'
 Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/syntastic'
 Bundle 'ervandew/supertab'
@@ -84,7 +84,7 @@ Bundle 'Shougo/neocomplcache'
 " allows cycling through recent yanks/deletes
 Bundle 'vim-scripts/YankRing.vim'
 " rapid html generation
-Bundle 'kogakure/vim-sparkup'
+Bundle 'tristen/vim-sparkup'
 
 " Language Additions
 Bundle 'nono/vim-handlebars'
@@ -94,7 +94,7 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'itspriddle/vim-jquery'
 Bundle 'tpope/vim-rails'
-Bundle 'mutewinter/taskpaper.vim'
+" Bundle 'mutewinter/taskpaper.vim'
 Bundle 'leshill/vim-json'
 Bundle 'mutewinter/nginx.vim'
 " Bundle 'tpope/vim-rake'
@@ -163,7 +163,7 @@ elseif has('gui_macvim')
   " MacVim
   " set guifont=Monaco:h14
   " set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
-  set guifont=Source\ Code\ Pro\ for\ Powerline:h20
+  set guifont=Source\ Code\ Pro\ for\ Powerline:h14
 
   " Hide Toolbar in MacVim
   if has("gui_running")
@@ -221,7 +221,6 @@ set list          " Show trailing spaces and tabs
 set listchars=tab:▷⋅,trail:⋅,nbsp:⋅ "What to show
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
-
 " ---------------
 " Behaviors
 " ---------------
@@ -237,6 +236,7 @@ set timeoutlen=350     " Time to wait for a command (after leader for example)
 set foldlevelstart=999 " Remove folds
 set tw=72              " Set text width to 72 cols
 set formatoptions=crql " autowrap comments; autoinsert comment char on newline; gq formats comments; don't autoformat long lines
+" set iskeyword-=_       " add underscore to the list of word delimiters 'cw' command, etc.
 
 " ---------------
 " Folding Settings
@@ -318,15 +318,23 @@ set complete=.,w,b,u,U,b,]
 " map <F1> <Esc>
 " imap <F1> <Esc>
 
+" capital 'Y' yanks to end of line
+map Y y$
+
+" Rename with path
+map <Leader><Leader>r :Rename <C-R>=expand("%")<CR>
+
 " Run specs with F9!!
-map <F9> :Dispatch spring rspec %<CR>
+map <F9> :Dispatch bin/spring rspec %<CR>
 " Add a line number
-map <F10> :Dispatch spring rspec %:
+map <F10> :Dispatch bin/spring rspec %:
 
 " zeus specs
 map <F2> :Dispatch zeus rspec %<CR>
 " Add a line number
 map <F3> :Dispatch zeus rspec %:
+" quickfix close
+map cc :ccl<CR>
 
 " Removes doc lookup binding because it's easy to fat finger
 nmap K k
@@ -501,7 +509,8 @@ map <C-m> :TComment <cr>
 " ---------------
 " Snipmate
 " ---------------
-let g:snips_trigger_key='<c-enter>'
+" let g:snips_trigger_key='<c-enter>'
+imap <C-Enter> <Plug>snipMateNextOrTrigger
 
 " ---------------
 " IndentGuides
@@ -542,7 +551,7 @@ inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 " ---------------
 " let g:syntastic_auto_loc_list=1
 let g:syntastic_enable_signs=1
-let g:syntastic_quiet_warnings=1
+let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_disabled_filetypes=['scss'] " Disable .sh on Windows
 
 " Platform-specific config files
@@ -807,10 +816,6 @@ endfunction
 
 command! QuickSpellingFix call QuickSpellingFix()
 nmap <silent> <leader>z :QuickSpellingFix<CR>
-
-" ----------------------------------------
-" External Apps
-" ----------------------------------------
 
 " ---------------
 " Pretty XML

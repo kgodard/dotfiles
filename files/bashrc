@@ -1,6 +1,6 @@
 # http://www.reddit.com/r/ruby/comments/wgtqj/how_i_spend_my_time_building_rails_apps/c5daer4
 # More suitable settings for ruby when running rails apps
-export RUBY_HEAP_MIN_SLOTS=800000
+export RUBY_GC_HEAP_INIT_SLOTS=800000
 export RUBY_HEAP_FREE_MIN=100000
 export RUBY_HEAP_SLOTS_INCREMENT=300000
 export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
@@ -172,8 +172,9 @@ alias la='ls -lahFG'                            # classify files in colour
 alias dir='ls -FG'                              # wide format
 alias ld='ls -lp | grep "/"'                   # dirs only
 
-export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-export PATH=$PATH:$HOME/bin # Add ~/bin
+# this should probably be done in my actual .bashrc
+# export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+# export PATH=$PATH:$HOME/bin # Add ~/bin
 
 # for work -- make cucumber NOT preserve data after runs
 export KEEP_DB=false
