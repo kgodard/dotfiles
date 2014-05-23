@@ -7,6 +7,11 @@ export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 export RUBY_GC_MALLOC_LIMIT=79000000
 
 #my stuff
+alias mig='brake db:migrate db:test:prepare'
+alias bmi='bundle; brake db:migrate db:test:prepare'
+alias fulcr='fixulimit; lineman clean; lineman run'
+alias lcr='lineman clean; lineman run'
+alias lr='lineman run'
 alias cepjenkins='rvm use ruby-2.1.0@rails3.2; comv jenkins create -r kgodard -t; rvm use ruby-1.9.3-p392@cep'
 alias rsp_mod='git status | grep "_spec.rb" | cut -f4 -d" " | xargs bundle exec rspec'
 alias cepgb='cap greenball_test engagement_portal:update'
@@ -102,7 +107,7 @@ alias gb='git branch'
 alias gba='git branch -a'
 alias gdf='git diff-files -p --color'
 alias grestore='git checkout HEAD --'
-alias gu='git gui &'
+alias gu='git-cola &'
 alias gk='gitk --all &'
 alias gcq='git commit -a -m'
 alias gsl='git stash list'
