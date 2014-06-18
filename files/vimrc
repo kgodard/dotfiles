@@ -1,11 +1,11 @@
 set nocompatible " be iMproved
 filetype off     " required!
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle, required
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
 " ---------------
 " Plugin Bundles
@@ -22,120 +22,122 @@ Bundle 'gmarik/vundle'
 " Bundle 'skwp/vim-ruby-conque'
 
 " Navigation
-Bundle 'ZoomWin'
-" Bundle 'wincent/Command-T'
-Bundle 'kien/ctrlp.vim'
-Bundle 'edsono/vim-matchit'
-Bundle 'sandeepcr529/Buffet.vim'
-Bundle 'vim-scripts/bufexplorer.zip'
-" Bundle 'fholgado/minibufexpl.vim'
-" Bundle 'vim-scripts/taglist.vim'
-Bundle 'majutsushi/tagbar'
-" Bundle 'twe4ked/vim-peepopen'
+Plugin 'ZoomWin'
+" Plugin 'wincent/Command-T'
+Plugin 'kien/ctrlp.vim'
+Plugin 'edsono/vim-matchit'
+Plugin 'sandeepcr529/Buffet.vim'
+Plugin 'vim-scripts/bufexplorer.zip'
+" Plugin 'fholgado/minibufexpl.vim'
+" Plugin 'vim-scripts/taglist.vim'
+Plugin 'majutsushi/tagbar'
+" Plugin 'twe4ked/vim-peepopen'
 
 " This fork is required due to remapping ; to :
-Bundle 'christoomey/vim-space'
-Bundle 'Lokaltog/vim-easymotion'
+Plugin 'christoomey/vim-space'
+Plugin 'Lokaltog/vim-easymotion'
 
 " UI Additions
-Bundle 'nathanaelkane/vim-indent-guides'
-" Bundle 'Lokaltog/vim-powerline'
-Bundle 'bling/vim-airline'
-Bundle 'scrooloose/nerdtree'
-" Bundle 'Rykka/colorv.vim'
-" Bundle 'sjl/gundo.vim'
+Plugin 'nathanaelkane/vim-indent-guides'
+" Plugin 'Lokaltog/vim-powerline'
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/nerdtree'
+" Plugin 'Rykka/colorv.vim'
+" Plugin 'sjl/gundo.vim'
 
 " Terminal
-" Bundle 'rosenfeld/conque-term'
+" Plugin 'rosenfeld/conque-term'
 
 " Colors
-" Bundle 'endel/vim-github-colorscheme'
-" Bundle 'altercation/vim-colors-solarized'
-" Bundle 'tomasr/molokai'
-" Bundle 'vim-scripts/blackboard.vim'
-" Bundle 'tpope/vim-vividchalk'
-Bundle 'flazz/vim-colorschemes'
-Bundle 'mutewinter/ir_black_mod'
-Bundle 'morhetz/gruvbox'
-Bundle 'twe4ked/vim-colorscheme-switcher'
+" Plugin 'endel/vim-github-colorscheme'
+" Plugin 'altercation/vim-colors-solarized'
+" Plugin 'tomasr/molokai'
+" Plugin 'vim-scripts/blackboard.vim'
+" Plugin 'tpope/vim-vividchalk'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'mutewinter/ir_black_mod'
+Plugin 'morhetz/gruvbox'
+Plugin 'twe4ked/vim-colorscheme-switcher'
 
 " Commands
-" Bundle 'scrooloose/nerdcommenter'
-Bundle 'vim-scripts/tComment'
-Bundle 'tpope/vim-surround'
-" Bundle 'tpope/vim-speeddating'
-Bundle 'tpope/vim-fugitive'
-" Bundle 'tpope/vim-unimpaired'
-Bundle 'godlygeek/tabular'
-Bundle 'sickill/vim-pasta'
-Bundle 'mileszs/ack.vim'
-Bundle 'gmarik/sudo-gui.vim'
-Bundle 'milkypostman/vim-togglelist'
-Bundle 'danro/rename.vim'
+" Plugin 'scrooloose/nerdcommenter'
+Plugin 'vim-scripts/tComment'
+Plugin 'tpope/vim-surround'
+" Plugin 'tpope/vim-speeddating'
+Plugin 'tpope/vim-fugitive'
+" Plugin 'tpope/vim-unimpaired'
+Plugin 'godlygeek/tabular'
+Plugin 'sickill/vim-pasta'
+Plugin 'mileszs/ack.vim'
+Plugin 'gmarik/sudo-gui.vim'
+Plugin 'milkypostman/vim-togglelist'
+Plugin 'danro/rename.vim'
 
 " Automatic Helpers
-Bundle 'IndexedSearch'
-" Bundle 'xolox/vim-session'
-Bundle 'Raimondi/delimitMate'
-Bundle 'scrooloose/syntastic'
-Bundle 'ervandew/supertab'
-Bundle 'gregsexton/MatchTag'
-Bundle 'Shougo/neocomplcache'
+Plugin 'IndexedSearch'
+" Plugin 'xolox/vim-session'
+Plugin 'Raimondi/delimitMate'
+Plugin 'scrooloose/syntastic'
+Plugin 'ervandew/supertab'
+Plugin 'gregsexton/MatchTag'
+Plugin 'Shougo/neocomplcache'
 " allows cycling through recent yanks/deletes
-Bundle 'vim-scripts/YankRing.vim'
+Plugin 'vim-scripts/YankRing.vim'
 " rapid html generation
-Bundle 'tristen/vim-sparkup'
+Plugin 'tristen/vim-sparkup'
 
 " Language Additions
-Bundle 'nono/vim-handlebars'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'tpope/vim-haml'
-Bundle 'pangloss/vim-javascript'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'itspriddle/vim-jquery'
-Bundle 'tpope/vim-rails'
-" Bundle 'mutewinter/taskpaper.vim'
-Bundle 'leshill/vim-json'
-Bundle 'mutewinter/nginx.vim'
-" Bundle 'tpope/vim-rake'
-Bundle 'timcharper/textile.vim'
-Bundle 'tpope/vim-endwise'
-Bundle 'thisivan/vim-ruby-matchit'
-Bundle 'tpope/vim-cucumber'
-Bundle 'tpope/vim-markdown'
-Bundle 'jgoulah/cocoa.vim'
+Plugin 'nono/vim-handlebars'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-haml'
+Plugin 'pangloss/vim-javascript'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'itspriddle/vim-jquery'
+Plugin 'tpope/vim-rails'
+" Plugin 'mutewinter/taskpaper.vim'
+Plugin 'leshill/vim-json'
+Plugin 'mutewinter/nginx.vim'
+" Plugin 'tpope/vim-rake'
+Plugin 'timcharper/textile.vim'
+Plugin 'tpope/vim-endwise'
+Plugin 'thisivan/vim-ruby-matchit'
+Plugin 'tpope/vim-cucumber'
+Plugin 'tpope/vim-markdown'
+Plugin 'jgoulah/cocoa.vim'
 if has('ruby')
-  Bundle 'matthias-guenther/hammer.vim'
+  Plugin 'matthias-guenther/hammer.vim'
 endif
 
-Bundle 'css3'
-Bundle 'othree/html5-syntax.vim'
-Bundle 'othree/javascript-libraries-syntax.vim'
-Bundle 'thomd/vim-jasmine'
-Bundle 'lunaru/vim-less'
+Plugin 'css3'
+Plugin 'othree/html5-syntax.vim'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'thomd/vim-jasmine'
+Plugin 'lunaru/vim-less'
 
 " Testing
-Bundle 'tpope/vim-dispatch'
+Plugin 'tpope/vim-dispatch'
 
 "Snippets
-Bundle "garbas/vim-snipmate"
-Bundle "cschneid/snipmate-snippets"
+" Plugin "garbas/vim-snipmate"
+" Plugin "cschneid/snipmate-snippets"
 
 " Text Objects
-Bundle 'kana/vim-textobj-user'
-Bundle 'nelstrom/vim-textobj-rubyblock'
-Bundle 'michaeljsmith/vim-indent-object'
-Bundle 'argtextobj.vim'
-Bundle 'vim-scripts/loremipsum'
+Plugin 'kana/vim-textobj-user'
+Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'argtextobj.vim'
+Plugin 'vim-scripts/loremipsum'
 
 " Services
-Bundle 'mattn/gist-vim'
+Plugin 'mattn/gist-vim'
 
 " Libraries
-Bundle 'L9'
-Bundle 'tpope/vim-repeat'
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
+Plugin 'L9'
+Plugin 'tpope/vim-repeat'
+" Plugin "MarcWeber/vim-addon-mw-utils"
+" Plugin "tomtom/tlib_vim"
+
+call vundle#end()
 
 filetype plugin indent on  " Automatically detect file types. (must turn on after Vundle)
 
