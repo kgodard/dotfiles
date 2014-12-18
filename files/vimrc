@@ -22,6 +22,7 @@ Plugin 'gmarik/Vundle.vim'
 " Bundle 'skwp/vim-ruby-conque'
 
 " Navigation
+Plugin 'emilsoman/spec-outline.vim'
 Plugin 'ZoomWin'
 " Plugin 'wincent/Command-T'
 Plugin 'kien/ctrlp.vim'
@@ -31,6 +32,7 @@ Plugin 'vim-scripts/bufexplorer.zip'
 " Plugin 'fholgado/minibufexpl.vim'
 " Plugin 'vim-scripts/taglist.vim'
 Plugin 'majutsushi/tagbar'
+Plugin 'lukaszkorecki/coffeetags'
 " Plugin 'twe4ked/vim-peepopen'
 
 " This fork is required due to remapping ; to :
@@ -42,6 +44,7 @@ Plugin 'nathanaelkane/vim-indent-guides'
 " Plugin 'Lokaltog/vim-powerline'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
+Plugin 'fholgado/minibufexpl.vim'
 " Plugin 'Rykka/colorv.vim'
 " Plugin 'sjl/gundo.vim'
 
@@ -56,7 +59,7 @@ Plugin 'scrooloose/nerdtree'
 " Plugin 'tpope/vim-vividchalk'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'mutewinter/ir_black_mod'
-Plugin 'morhetz/gruvbox'
+" Plugin 'morhetz/gruvbox' * now included in vim-colorschemes
 Plugin 'twe4ked/vim-colorscheme-switcher'
 
 " Commands
@@ -65,6 +68,7 @@ Plugin 'vim-scripts/tComment'
 Plugin 'tpope/vim-surround'
 " Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-unimpaired'
 " Plugin 'tpope/vim-unimpaired'
 Plugin 'godlygeek/tabular'
 Plugin 'sickill/vim-pasta'
@@ -108,7 +112,7 @@ if has('ruby')
   Plugin 'matthias-guenther/hammer.vim'
 endif
 
-Plugin 'css3'
+Plugin 'hail2u/vim-css3-syntax'
 Plugin 'othree/html5-syntax.vim'
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'thomd/vim-jasmine'
@@ -232,7 +236,7 @@ set wildmenu           " Turn on WiLd menu
 set hidden             " Change buffer - without saving
 set history=1024       " Number of things to remember in history.
 set cf                 " Enable error files & error jumping.
-" set clipboard+=unnamed " Yanks go on clipboard instead.
+set clipboard+=unnamed " Yanks go on clipboard instead.
 set autowrite          " Writes on make/shell commands
 set timeoutlen=350     " Time to wait for a command (after leader for example)
 set foldlevelstart=999 " Remove folds
@@ -277,6 +281,9 @@ map <Leader>ra :!ctags --extra=+f --exclude=.git --exclude=log -R ../*<CR><CR>
 
 " go to symbol!
 map <Leader>d :TagbarToggle <cr>
+
+" show spec outline!
+map <silent> <Leader>ss :SpecOutlineToggle<CR>
 
 " use Ack instead of grep
 set grepprg=ack
@@ -327,9 +334,9 @@ map Y y$
 map <Leader><Leader>r :Rename <C-R>=expand("%")<CR>
 
 " Run specs with F9!!
-map <F9> :Dispatch bin/spring rspec %<CR>
+map <F9> :Dispatch bin/rspec %<CR>
 " Add a line number
-map <F10> :Dispatch bin/spring rspec %:
+map <F10> :Dispatch bin/rspec %:
 
 " zeus specs
 map <F2> :Dispatch zeus rspec %<CR>
@@ -365,6 +372,8 @@ inoremap ;; <Esc> A
 " imap <C-Enter> <br/>
 
 " previous and next buffers
+noremap <C-L> :MBEbn<CR>
+noremap <C-H> :MBEbp<CR>
 " map [ :bp<CR>
 " map ] :bn<CR>
 
@@ -419,7 +428,7 @@ map <silent> <leader>r :so ~/.vimrc<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 " Setting toggles
 nmap <leader>sn :set number!<CR>
-nmap <leader>ss :set spell!<CR>
+" nmap <leader>ss :set spell!<CR>
 
 " Hide highlighted search terms
 nnoremap <silent> <c-space> :nohl<CR>
@@ -551,16 +560,16 @@ inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 " ---------------
 " Syntastic
 " ---------------
-" let g:syntastic_auto_loc_list=1
+let g:syntastic_auto_loc_list=1
 let g:syntastic_enable_signs=1
 let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_disabled_filetypes=['scss'] " Disable .sh on Windows
 
 " Platform-specific config files
-if has('win32') || has('win64')
-  let g:syntastic_jsl_conf=$HOME.'/.vim/config/windows/syntastic/jsl.conf'
-  let g:syntastic_disabled_filetypes=['sh'] " Disable .sh on Windows
-endif
+" if has('win32') || has('win64')
+"   let g:syntastic_jsl_conf=$HOME.'/.vim/config/windows/syntastic/jsl.conf'
+"   let g:syntastic_disabled_filetypes=['sh'] " Disable .sh on Windows
+" endif
 
 " ---------------
 " NERDTree
@@ -857,8 +866,8 @@ vnoremap <A-k> :m-2<CR>gv=gv
 " let seconds = str2nr(strftime('%S'))
 " execute 'colorscheme '.schemes[seconds%11]
 " redraw
-colorscheme blackboard
-" set bg=dark
+colorscheme pacific
+set bg=dark
 " toggle between light and dark with F6
 map <F6> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 " call togglebg#map("<F6>")

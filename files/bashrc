@@ -7,6 +7,12 @@ export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 export RUBY_GC_MALLOC_LIMIT=79000000
 
 #my stuff
+alias curdb="cat config/database.yml | grep database | grep -v '#' | grep -v production"
+alias simple='cd ~/Development/xcode_projects/SimpleWrapper'
+alias front='cd ~/Development/other/rooms/public/frontend'
+alias rooms='cd ~/Development/other/rooms'
+alias weakpass="echo 'PortalUser.find(1).set_weak_password \"pass\"; exit' | be rails c"
+alias rflush="echo 'FLUSHALL' | redis-cli -n 2"
 alias mig='brake db:migrate db:test:prepare'
 alias bmi='bundle; brake db:migrate db:test:prepare'
 alias fulcr='fixulimit; lineman clean; lineman run'
