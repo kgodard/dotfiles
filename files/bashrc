@@ -7,6 +7,8 @@ export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 export RUBY_GC_MALLOC_LIMIT=79000000
 
 #my stuff
+alias trans='(port; brake cep:i18n:export)'
+alias gsu='cd ../chef-repo; git fetch origin; cd ../; git submodule update; cd apollo'
 alias curdb="cat config/database.yml | grep database | grep -v '#' | grep -v production"
 alias simple='cd ~/Development/xcode_projects/SimpleWrapper'
 alias front='cd ~/Development/other/rooms/public/frontend'
@@ -18,7 +20,7 @@ alias bmi='bundle; brake db:migrate db:test:prepare'
 alias fulcr='fixulimit; lineman clean; lineman run'
 alias lcr='lineman clean; lineman run'
 alias lr='lineman run'
-alias cepjenkins='rvm use ruby-2.1.0@rails3.2; comv jenkins create -r kgodard -t; rvm use ruby-1.9.3-p392@cep'
+alias buildthis='comv jenkins create -r kgodard -t'
 alias rsp_mod='git status | grep "_spec.rb" | cut -f4 -d" " | xargs bundle exec rspec'
 alias cepgb='cap greenball_test engagement_portal:update'
 alias ipsim='open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app'
@@ -34,6 +36,7 @@ alias int='cd ~/Development/comverge/intellisource'
 alias cep='cd ~/Development/comverge/consumer_engagement_portal'
 alias port='cd ~/Development/comverge/intellisource/portal'
 alias gbr="git for-each-ref --sort=-committerdate --format='%(refname)' refs/heads/ | sed -e 's|refs/heads/||' | head -n 5"
+alias rdbounce='rdstop; rdstart'
 alias rdstart='brake daemons:resque:start'
 alias rdstop='brake daemons:resque:stop'
 alias rtstart='brake daemons:test:resque:start'
@@ -215,4 +218,4 @@ RED="\[\033[0;31m\]"
 YELLOW="\[\033[0;33m\]"
 GREEN="\[\033[0;32m\]"
 
-PS1="$RED\$(date +%H:%M) \W$YELLOW \$(parse_git_branch)$GREEN[\$(git config user.initials)]$ "
+PS1="$RED\$(date +%H:%M) \W$YELLOW \$(parse_git_branch)$GREEN[\$(git config user.initials)]\\n$ "

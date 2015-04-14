@@ -44,7 +44,6 @@ Plugin 'nathanaelkane/vim-indent-guides'
 " Plugin 'Lokaltog/vim-powerline'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
-Plugin 'fholgado/minibufexpl.vim'
 " Plugin 'Rykka/colorv.vim'
 " Plugin 'sjl/gundo.vim'
 
@@ -72,10 +71,12 @@ Plugin 'tpope/vim-unimpaired'
 " Plugin 'tpope/vim-unimpaired'
 Plugin 'godlygeek/tabular'
 Plugin 'sickill/vim-pasta'
-Plugin 'mileszs/ack.vim'
+" Plugin 'mileszs/ack.vim'
+Plugin 'rking/ag.vim'
 Plugin 'gmarik/sudo-gui.vim'
 Plugin 'milkypostman/vim-togglelist'
 Plugin 'danro/rename.vim'
+Plugin 'pbrisbin/vim-mkdir'
 
 " Automatic Helpers
 Plugin 'IndexedSearch'
@@ -122,8 +123,8 @@ Plugin 'lunaru/vim-less'
 Plugin 'tpope/vim-dispatch'
 
 "Snippets
-" Plugin "garbas/vim-snipmate"
-" Plugin "cschneid/snipmate-snippets"
+" Plugin 'garbas/vim-snipmate'
+" Plugin 'cschneid/snipmate-snippets"
 
 " Text Objects
 Plugin 'kana/vim-textobj-user'
@@ -169,7 +170,7 @@ elseif has('gui_macvim')
   " MacVim
   " set guifont=Monaco:h14
   " set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
-  set guifont=Source\ Code\ Pro\ for\ Powerline:h14
+  set guifont=Source\ Code\ Pro\ for\ Powerline:h15
 
   " Hide Toolbar in MacVim
   if has("gui_running")
@@ -286,7 +287,10 @@ map <Leader>d :TagbarToggle <cr>
 map <silent> <Leader>ss :SpecOutlineToggle<CR>
 
 " use Ack instead of grep
-set grepprg=ack
+" set grepprg=ack
+
+" Ggr git grep fancy
+command -nargs=+ Ggr execute 'silent Ggrep!' <q-args> | cw | redraw!
 
 " ctrl-n, ctrl-p
 map <C-n> :cn <cr>
@@ -337,6 +341,10 @@ map <Leader><Leader>r :Rename <C-R>=expand("%")<CR>
 map <F9> :Dispatch bin/rspec %<CR>
 " Add a line number
 map <F10> :Dispatch bin/rspec %:
+
+" grab filename or filename with line #
+nmap <Leader>cf :let @+=expand("%:p")<CR>
+nmap <Leader>cn :let @+=expand("%:p") . ":" . line('.')<CR>
 
 " zeus specs
 map <F2> :Dispatch zeus rspec %<CR>
@@ -395,6 +403,9 @@ nmap <leader><leader>q :bufdo bdelete <cr>
 " ---------------
 " Leader Commands
 " ---------------
+nmap <Leader>cf :let @+=expand("%:p")<CR>
+nmap <Leader>cn :let @+=expand("%:p") . ":" . line('.')<CR>
+
 nmap <leader><leader>c :colorscheme <cr>
 
 " insert lorem ipsum paragraph
