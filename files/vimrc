@@ -40,6 +40,7 @@ Plugin 'christoomey/vim-space'
 Plugin 'Lokaltog/vim-easymotion'
 
 " UI Additions
+Plugin 'airblade/vim-gitgutter'
 Plugin 'nathanaelkane/vim-indent-guides'
 " Plugin 'Lokaltog/vim-powerline'
 Plugin 'bling/vim-airline'
@@ -388,6 +389,10 @@ noremap <C-H> :MBEbp<CR>
 " mappings for DIFFing
 " diff current buffer
 map <leader>f :Gdiff <cr>
+" diff most recent changes
+map <leader>i :Gdiff ~1 <cr>
+" show last log message
+map <leader>ll :Git log -1 <cr>
 " stop diffing current buffer
 map <leader>k :diffoff <bar> :only <cr>
 
@@ -877,7 +882,7 @@ vnoremap <A-k> :m-2<CR>gv=gv
 " let seconds = str2nr(strftime('%S'))
 " execute 'colorscheme '.schemes[seconds%11]
 " redraw
-colorscheme pacific
+colorscheme vividchalk
 set bg=dark
 " toggle between light and dark with F6
 map <F6> :let &background = ( &background == "dark"? "light" : "dark" )<CR>

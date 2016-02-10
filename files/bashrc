@@ -7,11 +7,21 @@ export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 export RUBY_GC_MALLOC_LIMIT=79000000
 
 #my stuff
+alias realdevices='CEP_DEVICE_SYNC=true NO_DEMO=true NO_MARKETS=true NO_AGGREGATOR=true'
+alias roomfeatures='bin/rspec spec/features'
+alias roomspecs='bin/rspec spec --exclude-pattern "**/features/*_spec.rb"'
+alias roomifytest='be rails s -e test -p 10000 -d'
+alias roomifystop='pkill -INT ruby'
+alias comvtargets='(cd ~/Development/comverge/comv && cat ~/Development/comverge/intellisource/apollo/config/deploy_targets/*.rb | script/generate_servers_file > ~/.comv/config/ip/servers)'
+alias resetrooms='brake db:reset && be rails s'
+alias resetgrdb='mysql -u root -p grez_development < tmp/grez_production.sql && brake db:migrate && be script/console'
+alias its='bin/spec/api'
+alias ggreplace='git grep -i -Omvim'
 alias trans='(port; brake cep:i18n:export)'
 alias gsu='cd ../chef-repo; git fetch origin; cd ../; git submodule update; cd apollo'
 alias curdb="cat config/database.yml | grep database | grep -v '#' | grep -v production"
 alias simple='cd ~/Development/xcode_projects/SimpleWrapper'
-alias front='cd ~/Development/other/rooms/public/frontend'
+alias front='cd ~/Development/other/rooms/frontend'
 alias rooms='cd ~/Development/other/rooms'
 alias weakpass="echo 'PortalUser.find(1).set_weak_password \"pass\"; exit' | be rails c"
 alias rflush="echo 'FLUSHALL' | redis-cli -n 2"
@@ -21,6 +31,7 @@ alias fulcr='fixulimit; lineman clean; lineman run'
 alias lcr='lineman clean; lineman run'
 alias lr='lineman run'
 alias buildthis='comv jenkins create -r kgodard -t'
+alias unbuildthis='comv jenkins delete -r kgodard'
 alias rsp_mod='git status | grep "_spec.rb" | cut -f4 -d" " | xargs bundle exec rspec'
 alias cepgb='cap greenball_test engagement_portal:update'
 alias ipsim='open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app'
@@ -156,7 +167,6 @@ alias rstop='bundle exec rake daemons:redis:stop daemons:thingling:stop'
 alias rtbounce='rtstop; rtstart'
 # alias rtstart='RAILS_ENV=test rstart'
 # alias rtstop='RAILS_ENV=test rstop'
-# alias rvm-restart='rvm_reload_flag=1 source '\''/Users/jasonn/.rvm/scripts/rvm'\'''
 # alias rw='bundle exec resque-web ~/workspace/smartgrid/apollo/config/initializers/resque.rb'
 # alias sc='script/console'
 alias ss='script/server'
@@ -186,7 +196,6 @@ alias dir='ls -FG'                              # wide format
 alias ld='ls -lp | grep "/"'                   # dirs only
 
 # this should probably be done in my actual .bashrc
-# export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 # export PATH=$PATH:$HOME/bin # Add ~/bin
 
 # for work -- make cucumber NOT preserve data after runs
