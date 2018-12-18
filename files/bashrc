@@ -1,3 +1,6 @@
+# enable shell history for iex
+export ERL_AFLAGS="-kernel shell_history enabled"
+
 # http://www.reddit.com/r/ruby/comments/wgtqj/how_i_spend_my_time_building_rails_apps/c5daer4
 # More suitable settings for ruby when running rails apps
 export RUBY_GC_HEAP_INIT_SLOTS=800000
@@ -6,18 +9,63 @@ export RUBY_HEAP_SLOTS_INCREMENT=300000
 export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 export RUBY_GC_MALLOC_LIMIT=79000000
 
-#my stuff
+# digital ocean api token
+export DOTOKEN=82ef116ef5cdbaf1ae375dd59266d5d7f278ac51bb97aa7d68ef94428872c800
+
+# enable docker content trust
+export DOCKER_CONTENT_TRUST=0
+
+# modern vim vars
+export VIMCONFIG=~/.config/nvim
+export VIMDATA=~/.local/share/nvim
+
+# GREZ development defaults for database
+export MYSQL_HOST=127.0.0.1
+export MYSQL_USER=root
+export MYSQL_PASSWORD=
+export MYSQL_DATABASE=grez_development
+
+#my functions
+dmuse() { eval $(docker-machine env $1); }
+dmunset() { eval $(docker-machine env -u); }
+newbr() { git checkout -b $1 && git push -u kgodard $1; }
+
+#my aliases
+alias drmi=dockerRemoveImagesWithCriteria
+alias lastag='git describe --abbrev=0'
+alias cic='cd ~/Development/comverge/ci-console && dc run --rm console'
+alias k='kubectl'
+alias mk='/usr/local/bin/minikube'
+alias aad='cd ~/Development/comverge/advanced-apps'
+alias ic='cd ~/Development/comverge/intelliconnect'
+alias dm='docker-machine'
+alias aed='cd ~/Development/comverge/auto-ee-deploy'
+alias aehg='cd ~/Development/comverge/auto-ee-hold-generator'
+alias storm='cd ~/Development/other/grez_projects/stormfront'
+alias drec='docker rm $(docker ps -a -f status=exited -q)'
+alias drdi='docker rmi $(docker images -f dangling=true -q)'
+alias dc='docker-compose'
+alias cepirbrc='(cd ~ && mv .myirbrc .irbrc)'
+alias noirbrc='(cd ~ && mv .irbrc .myirbrc)'
+alias pstart='cv-portal-dev-restart'
+alias pstop='cv-portal-dev-stop'
+alias xo='open cep_ios.xcodeproj/'
+alias cio='cd ~/Development/comverge/ConsumerEngagementPortalForIos'
+alias ans='cd ~/Development/ansible-grez-server'
+alias lread='markdown README.md | lynx -stdin'
 alias realdevices='CEP_DEVICE_SYNC=true NO_DEMO=true NO_MARKETS=true NO_AGGREGATOR=true'
-alias roomfeatures='bin/rspec spec/features'
-alias roomspecs='bin/rspec spec --exclude-pattern "**/features/*_spec.rb"'
+alias roomfeatures='be rspec spec/features'
+alias roomspecs='be rspec spec --exclude-pattern "**/features/*_spec.rb"'
 alias roomifytest='be rails s -e test -p 10000 -d'
-alias roomifystop='pkill -INT ruby'
+alias getpumapid='ps aux | grep puma | grep -v color | awk '\''{print $2}'\'''
+alias roomifystop='kill -9 $(getpumapid)'
 alias comvtargets='(cd ~/Development/comverge/comv && cat ~/Development/comverge/intellisource/apollo/config/deploy_targets/*.rb | script/generate_servers_file > ~/.comv/config/ip/servers)'
 alias resetrooms='brake db:reset && be rails s'
 alias resetgrdb='mysql -u root -p grez_development < tmp/grez_production.sql && brake db:migrate && be script/console'
 alias its='bin/spec/api'
 alias ggreplace='git grep -i -Omvim'
-alias trans='(port; brake cep:i18n:export)'
+alias targs='cd $INTELLISOURCE_DEPLOY_TARGETS_DIR'
+alias trans='cd $CEP_TRANSLATIONS_DIR'
 alias gsu='cd ../chef-repo; git fetch origin; cd ../; git submodule update; cd apollo'
 alias curdb="cat config/database.yml | grep database | grep -v '#' | grep -v production"
 alias simple='cd ~/Development/xcode_projects/SimpleWrapper'
@@ -210,11 +258,40 @@ export LESS='-nfr'
 
 export IGNORE_REDIS=true
 
+# completions
 OSXGITCOMPLETION="/usr/local/etc/bash_completion.d/git-completion.bash"
 
 if [ -f $OSXGITCOMPLETION ]; then
   . $OSXGITCOMPLETION
 fi
+
+source <(kubectl completion bash)
+if [ -f $(brew --prefix)/etc/bash_completion ]; then 
+. $(brew --prefix)/etc/bash_completion
+fi
+
+# git branch open
+
+function _gbranch {
+  local dir=$1
+  echo `(cd $dir && git rev-parse --abbrev-ref HEAD)`
+}
+
+function gbo {
+  local user_repo=$(git ls-remote --get-url | cut -d ':' -f 2 | cut -d '.' -f 1)
+  local url="https://github.com/${user_repo}/tree/"
+  url+=$(_gbranch ".")
+  echo "$url"
+  open ${url}
+}
+
+function gboc {
+  local user_repo=$(git ls-remote --get-url | cut -d ':' -f 2 | cut -d '.' -f 1)
+  local url="https://github.comverge.com/${user_repo}/tree/"
+  url+=$(_gbranch ".")
+  echo "$url"
+  open ${url}
+}
 
 # get the current git branch for display in prompt
 function parse_git_branch () {
@@ -226,5 +303,40 @@ function parse_git_branch () {
 RED="\[\033[0;31m\]"
 YELLOW="\[\033[0;33m\]"
 GREEN="\[\033[0;32m\]"
+BLUE="\[\033[0;34m\]"
 
-PS1="$RED\$(date +%H:%M) \W$YELLOW \$(parse_git_branch)$GREEN[\$(git config user.initials)]\\n$ "
+function get_docker_machine_name () {
+  if [ ! -z "$DOCKER_MACHINE_NAME" ]
+  then
+    echo $DOCKER_MACHINE_NAME
+  fi
+}
+
+dockerRemoveImagesWithCriteria() {
+  local str="<none>"
+  if [[ -n $1 ]]; then
+    str=$1
+  fi
+
+  count=$(docker images | grep "$str" | wc -l)
+
+  if [[ "$count" -eq 0 ]]; then
+    echo "No docker images found for criteria '$str'"
+  else
+    echo "removing $count '$str' images..."
+    docker rmi -f $(docker images | grep "$1" | awk '{print $3}')
+  fi
+}
+
+# this will output git user initials from git pair
+# [\$(git config user.initials)]
+
+# my old prompt
+# PS1="$RED\$(date +%H:%M) \W$YELLOW \$(parse_git_branch)$GREEN[\$(get_docker_machine_name)]\\n$ "
+
+# bash-git-prompt from https://github.com/magicmonty/bash-git-prompt
+# export GIT_PROMPT_SHOW_UPSTREAM=1
+if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+  __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
+  source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+fi

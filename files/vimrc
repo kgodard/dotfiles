@@ -61,10 +61,13 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'mutewinter/ir_black_mod'
 " Plugin 'morhetz/gruvbox' * now included in vim-colorschemes
 Plugin 'twe4ked/vim-colorscheme-switcher'
+Plugin 'godlygeek/csapprox'
 
 " Commands
+Plugin 'eraserhd/vim-ios'
+Plugin 'tpope/vim-commentary'
 " Plugin 'scrooloose/nerdcommenter'
-Plugin 'vim-scripts/tComment'
+" Plugin 'vim-scripts/tComment'
 Plugin 'tpope/vim-surround'
 " Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-fugitive'
@@ -93,6 +96,10 @@ Plugin 'vim-scripts/YankRing.vim'
 Plugin 'tristen/vim-sparkup'
 
 " Language Additions
+" Plugin 'lambdatoast/elm.vim'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'keith/swift.vim'
+Plugin 'ElmCast/elm-vim'
 Plugin 'nono/vim-handlebars'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-haml'
@@ -114,11 +121,14 @@ if has('ruby')
   Plugin 'matthias-guenther/hammer.vim'
 endif
 
+Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'othree/html5-syntax.vim'
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'thomd/vim-jasmine'
 Plugin 'lunaru/vim-less'
+Plugin 'othree/yajs.vim'
+Plugin 'othree/es.next.syntax.vim'
 
 " Testing
 Plugin 'tpope/vim-dispatch'
@@ -347,10 +357,6 @@ map <F10> :Dispatch bin/rspec %:
 nmap <Leader>cf :let @+=expand("%:p")<CR>
 nmap <Leader>cn :let @+=expand("%:p") . ":" . line('.')<CR>
 
-" zeus specs
-map <F2> :Dispatch zeus rspec %<CR>
-" Add a line number
-map <F3> :Dispatch zeus rspec %:
 " quickfix close
 map cc :ccl<CR>
 
@@ -401,6 +407,9 @@ map <leader>m :bd <bar> :e <cr>
 
 " close all buffers
 nmap <leader><leader>q :bufdo bdelete <cr>
+
+" launch gitx from current directory
+nmap <leader><leader>x :silent !gitx <cr>
 
 " close all buffers except current
 " nmap <leader><leader>o :BufOnly <cr>
@@ -516,8 +525,8 @@ nnoremap <leader>"  yypv$r"
 " ---------------
 " TComment
 " ---------------
-map <leader>cc :TComment <cr>
-map <C-m> :TComment <cr>
+" map <leader>cc :TComment <cr>
+" map <C-m> :TComment <cr>
 
 " ---------------
 " ConqueTerm
@@ -576,10 +585,13 @@ inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 " ---------------
 " Syntastic
 " ---------------
+let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_enable_signs=1
 let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_disabled_filetypes=['scss'] " Disable .sh on Windows
+
+let g:elm_syntastic_show_warnings = 1
 
 " Platform-specific config files
 " if has('win32') || has('win64')
@@ -694,6 +706,9 @@ else
   nnoremap <silent><M-u> :CtrlPCurFile<CR>
   nnoremap <silent><M-y> :CtrlPMRUFiles<CR>
 end
+
+" Elm format
+let g:elm_format_autosave = 1
 
 " mini buffer explorer settings
 " let g:miniBufExplMapWindowNavVim = 1
@@ -882,7 +897,7 @@ vnoremap <A-k> :m-2<CR>gv=gv
 " let seconds = str2nr(strftime('%S'))
 " execute 'colorscheme '.schemes[seconds%11]
 " redraw
-colorscheme vividchalk
+colorscheme badwolf
 set bg=dark
 " toggle between light and dark with F6
 map <F6> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
