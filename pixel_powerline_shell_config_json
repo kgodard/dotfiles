@@ -1,0 +1,12 @@
+{
+  "segments": [
+    "virtual_env", 
+    "cwd",
+    "git",
+    "newline",
+    "username"
+  ],
+  "cwd": {
+    "mode": "dironly"
+  }
+}

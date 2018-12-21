@@ -1,0 +1,168 @@
+" Plugins will be downloaded under the specified directory.
+call plug#begin('~/.vim/plugged')
+
+" Declare the list of plugins.
+Plug 'tpope/vim-sensible'
+Plug 'junegunn/seoul256.vim'
+Plug 'tpope/vim-unimpaired'
+Plug 'vim-scripts/bufexplorer.zip'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'flazz/vim-colorschemes'
+"call minpac#add('twe4ked/vim-colorscheme-switcher')
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
+Plug 'godlygeek/tabular'
+Plug 'danro/rename.vim'
+Plug 'iCyMind/NeoSolarized'
+Plug 'airblade/vim-gitgutter'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'kshenoy/vim-signature'
+Plug 'vim-airline/vim-airline'
+Plug 'Raimondi/delimitMate'
+Plug 'scrooloose/syntastic'
+Plug 'ervandew/supertab'
+Plug 'gregsexton/MatchTag'
+
+" Autocomplete
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
+"" Languages
+"call minpac#add('aklt/plantuml-syntax')
+"call minpac#add('tyru/open-browser.vim')
+"call minpac#add('weirongxu/plantuml-previewer.vim')
+"call minpac#add('elixir-lang/vim-elixir')
+"call minpac#add('keith/swift.vim')
+"call minpac#add('ElmCast/elm-vim')
+"call minpac#add('nono/vim-handlebars')
+"call minpac#add('vim-ruby/vim-ruby')
+"call minpac#add('tpope/vim-haml')
+"call minpac#add('pangloss/vim-javascript')
+"call minpac#add('kchmck/vim-coffee-script')
+"call minpac#add('itspriddle/vim-jquery')
+"call minpac#add('tpope/vim-rails')
+"call minpac#add('leshill/vim-json')
+"call minpac#add('mutewinter/nginx.vim')
+"call minpac#add('timcharper/textile.vim')
+"call minpac#add('tpope/vim-endwise')
+"call minpac#add('thisivan/vim-ruby-matchit')
+"call minpac#add('tpope/vim-cucumber')
+"call minpac#add('tpope/vim-markdown')
+"call minpac#add('jgoulah/cocoa.vim')
+"call minpac#add('ekalinin/Dockerfile.vim')
+"call minpac#add('hail2u/vim-css3-syntax')
+"call minpac#add('othree/html5-syntax.vim')
+"call minpac#add('othree/javascript-libraries-syntax.vim')
+"call minpac#add('thomd/vim-jasmine')
+"call minpac#add('lunaru/vim-less')
+"call minpac#add('othree/yajs.vim')
+"call minpac#add('othree/es.next.syntax.vim')
+"call minpac#add('tpope/vim-jdaddy')
+"if has('ruby')
+"  call minpac#add('matthias-guenther/hammer.vim')
+"endif
+"
+"" Navigation
+"call minpac#add('emilsoman/spec-outline.vim')
+"call minpac#add('kien/ctrlp.vim')
+"call minpac#add('vim-scripts/matchit.zip')
+"call minpac#add('sandeepcr529/Buffet.vim')
+"call minpac#add('majutsushi/tagbar')
+"call minpac#add('lukaszkorecki/coffeetags')
+
+" List ends here. Plugins become visible to Vim after this call.
+call plug#end()
+
+" for autocomplete
+" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+
+" map a leader
+let mapleader = ","
+
+" leader s saving
+map <leader>s :w <cr>
+
+" ---------------
+" Text Format
+" ---------------
+set tabstop=2
+set backspace=2  " Delete everything with backspace
+set shiftwidth=2 " Tabs under smart indent
+set cindent
+set autoindent
+set smarttab
+set expandtab    " hitting <tab> inserts two spaces
+
+" ---------------
+" Visual
+" ---------------
+set showmatch   " Show matching brackets.
+set matchtime=2 " How many tenths of a second to blink
+
+" quickfix close
+map cc :ccl<CR>
+
+" double percentage sign in command mode is expanded
+" to directory of current file - http://vimcasts.org/e/14
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+
+" map double j to escape to exit insert mode
+inoremap jj <Esc>
+
+" map for hashrocket
+imap <C-e> <C-R>=expand(' => ')<CR>
+
+" map for ruby interpolation brackets
+inoremap kk #{}<Left>
+
+" jump to end of line and keep editing
+inoremap ;; <Esc> A
+
+" display current colorscheme
+nmap <leader><leader>c :colorscheme <cr>
+
+" Window Movement
+nmap <leader>w :winc w<CR>
+
+" Window Resizing
+nmap - <C-w>-
+nmap = <C-w>+
+nmap _ <C-w><
+nmap + <C-w>>
+
+" ---------------
+" NERDTree
+" ---------------
+nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
+let NERDTreeShowBookmarks=1
+let NERDTreeChDirMode=2 " Change the NERDTree directory to the root node
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" ---------------
+" Fix Trailing White Space
+" ---------------
+map <leader>ws :%s/\s\+$//e<CR>
+command! FixTrailingWhiteSpace :%s/\s\+$//e
+
+" Buffet
+map <leader>bf :Bufferlist<CR>
+
+" edit another file in the same directory as current file
+map <leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
+
+",v brings up my .vimrc
+" map <leader>v :e ~/.dotfiles/files/vimrc<CR>
+
+" default color
+colo gruvbox
+set bg=dark

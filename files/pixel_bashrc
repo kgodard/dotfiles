@@ -1,0 +1,343 @@
+# enable shell history for iex
+export ERL_AFLAGS="-kernel shell_history enabled"
+
+# http://www.reddit.com/r/ruby/comments/wgtqj/how_i_spend_my_time_building_rails_apps/c5daer4
+# More suitable settings for ruby when running rails apps
+export RUBY_GC_HEAP_INIT_SLOTS=800000
+export RUBY_HEAP_FREE_MIN=100000
+export RUBY_HEAP_SLOTS_INCREMENT=300000
+export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
+export RUBY_GC_MALLOC_LIMIT=79000000
+
+# digital ocean api token
+export DOTOKEN=82ef116ef5cdbaf1ae375dd59266d5d7f278ac51bb97aa7d68ef94428872c800
+
+# enable docker content trust
+export DOCKER_CONTENT_TRUST=0
+
+# modern vim vars
+export VIMCONFIG=~/.config/nvim
+export VIMDATA=~/.local/share/nvim
+
+# GREZ development defaults for database
+export MYSQL_HOST=127.0.0.1
+export MYSQL_USER=root
+export MYSQL_PASSWORD=
+export MYSQL_DATABASE=grez_development
+
+#my functions
+dmuse() { eval $(docker-machine env $1); }
+dmunset() { eval $(docker-machine env -u); }
+newbr() { git checkout -b $1 && git push -u kgodard $1; }
+
+#my aliases
+alias lip='sudo ifconfig eth0 | grep netmask | awk '\''{print $2}'\'''
+alias drmi=dockerRemoveImagesWithCriteria
+alias lastag='git describe --abbrev=0'
+alias cic='cd ~/Development/comverge/ci-console && dc run --rm console'
+alias k='kubectl'
+alias mk='/usr/local/bin/minikube'
+alias aad='cd ~/Development/comverge/advanced-apps'
+alias ic='cd ~/Development/comverge/intelliconnect'
+alias dm='docker-machine'
+alias aed='cd ~/Development/comverge/auto-ee-deploy'
+alias aehg='cd ~/Development/comverge/auto-ee-hold-generator'
+alias storm='cd ~/Development/other/grez_projects/stormfront'
+alias drec='docker rm $(docker ps -a -f status=exited -q)'
+alias drdi='docker rmi $(docker images -f dangling=true -q)'
+alias dc='docker-compose'
+alias cepirbrc='(cd ~ && mv .myirbrc .irbrc)'
+alias noirbrc='(cd ~ && mv .irbrc .myirbrc)'
+alias pstart='cv-portal-dev-restart'
+alias pstop='cv-portal-dev-stop'
+alias xo='open cep_ios.xcodeproj/'
+alias cio='cd ~/Development/comverge/ConsumerEngagementPortalForIos'
+alias ans='cd ~/Development/ansible-grez-server'
+alias lread='markdown README.md | lynx -stdin'
+alias realdevices='CEP_DEVICE_SYNC=true NO_DEMO=true NO_MARKETS=true NO_AGGREGATOR=true'
+alias roomfeatures='be rspec spec/features'
+alias roomspecs='be rspec spec --exclude-pattern "**/features/*_spec.rb"'
+alias roomifytest='be rails s -e test -p 10000 -d'
+alias getpumapid='ps aux | grep puma | grep -v color | awk '\''{print $2}'\'''
+alias roomifystop='kill -9 $(getpumapid)'
+alias comvtargets='(cd ~/Development/comverge/comv && cat ~/Development/comverge/intellisource/apollo/config/deploy_targets/*.rb | script/generate_servers_file > ~/.comv/config/ip/servers)'
+alias resetrooms='brake db:reset && be rails s'
+alias resetgrdb='mysql -u root -p grez_development < tmp/grez_production.sql && brake db:migrate && be script/console'
+alias its='bin/spec/api'
+alias ggreplace='git grep -i -Omvim'
+alias targs='cd $INTELLISOURCE_DEPLOY_TARGETS_DIR'
+alias trans='cd $CEP_TRANSLATIONS_DIR'
+alias gsu='cd ../chef-repo; git fetch origin; cd ../; git submodule update; cd apollo'
+alias curdb="cat config/database.yml | grep database | grep -v '#' | grep -v production"
+alias simple='cd ~/Development/xcode_projects/SimpleWrapper'
+alias front='cd ~/Development/other/rooms/frontend'
+alias rooms='cd ~/Development/other/rooms'
+alias weakpass="echo 'PortalUser.find(1).set_weak_password \"pass\"; exit' | be rails c"
+alias rflush="echo 'FLUSHALL' | redis-cli -n 2"
+alias mig='brake db:migrate db:test:prepare'
+alias bmi='bundle; brake db:migrate db:test:prepare'
+alias fulcr='fixulimit; lineman clean; lineman run'
+alias lcr='lineman clean; lineman run'
+alias lr='lineman run'
+alias buildthis='comv jenkins create -r kgodard -t'
+alias unbuildthis='comv jenkins delete -r kgodard'
+alias rsp_mod='git status | grep "_spec.rb" | cut -f4 -d" " | xargs bundle exec rspec'
+alias cepgb='cap greenball_test engagement_portal:update'
+alias ipsim='open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app'
+alias glc='git log --pretty=format:"%Cred %h %Cgreen %ad %Cblue [%an] %Cgreen %s" --date=short'
+alias gld='git log --oneline --decorate'
+#work
+alias labsnap='comv db import -m create ../../snapshots-intellisource/lab_data.{ddl,sql}'
+alias gr2='cd ~/Development/other/grez_projects/grez2'
+alias wj='cd ~/Development/other/wholejourneys.com'
+alias z='zeus'
+alias fixulimit='ulimit -n 2560'
+alias int='cd ~/Development/comverge/intellisource'
+alias cep='cd ~/Development/comverge/consumer_engagement_portal'
+alias port='cd ~/Development/comverge/intellisource/portal'
+alias gbr="git for-each-ref --sort=-committerdate --format='%(refname)' refs/heads/ | sed -e 's|refs/heads/||' | head -n 5"
+alias rdbounce='rdstop; rdstart'
+alias rdstart='brake daemons:resque:start'
+alias rdstop='brake daemons:resque:stop'
+alias rtstart='brake daemons:test:resque:start'
+alias rtstop='brake daemons:test:resque:stop'
+alias ap='cd ~/Development/comverge/intellisource/apollo'
+alias precomp='RAILS_ENV=production bundle exec rake assets:precompile'
+alias brake='bundle exec rake'
+alias be='bundle exec'
+alias ste='open -a "Sublime Text 2"'
+alias sted='open -a "Sublime Text 2" .'
+alias pcwicon='heroku console --app pcwi-production'
+alias pcsfcon='heroku console --app pcwi-sf-production'
+alias pcwidepprod='git push production master; heroku rake db:migrate --app pcwi-production; heroku restart --app pcwi-production'
+alias pcwidepstag='git push staging master; heroku rake db:migrate --app pcwi-staging; heroku restart --app pcwi-staging'
+alias pcsfdepprod='git push production master; heroku rake db:migrate --app pcwi-sf-production; heroku restart --app pcwi-sf-production'
+alias pcsfdepstag='git push heroku master; heroku rake db:migrate --app pcwi-sf-staging; heroku restart --app pcwi-sf-staging'
+alias h='heroku'
+alias pcwidev='sudo cp -f /private/etc/apache2/passenger_pane_vhosts/pcwi.local.dev /private/etc/apache2/passenger_pane_vhosts/pcwi.local.vhost.conf; webrestart'
+alias pcwitest='sudo cp -f /private/etc/apache2/passenger_pane_vhosts/pcwi.local.test /private/etc/apache2/passenger_pane_vhosts/pcwi.local.vhost.conf; webrestart'
+alias webrestart='sudo /usr/sbin/apachectl restart'
+alias showhiddenfiles='defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder'
+alias hidehiddenfiles='defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder'
+alias fontsm='defaults -currentHost write -globalDomain AppleFontSmoothing -int 2'
+alias memcached='/usr/local/bin/memcached'
+alias pcrp='cd ~/Development/pcwi-reports'
+alias pcwi='cd ~/Development/pcwi'
+alias pcsf='cd ~/Development/pcwi_sf_services'
+alias pw='cd ~/Development/phocuswright'
+alias gr='cd ~/Development/other/grez_projects/GRez'
+alias pc='cd ~/Development/pcportal'
+# alias ss='authbind --deep script/server -p 80'
+alias con='script/console'
+alias tlog='tail -f log/development.log'
+alias rl='rm log/development.log'
+alias fstart='script/ferret_server start'
+alias fstop='script/ferret_server stop'
+alias clog='rm log/*.*'
+alias sshp='ssh deploy@legacy.phocuswright.com'
+alias sfpstart='script/sf_pusher start development'
+alias sfpstop='script/sf_pusher stop development'
+alias bjfstart='script/bj_factory start development'
+alias bjfstop='script/bj_factory stop development'
+alias dmstart='sfpstart;bjfstart'
+alias dmstop='bjfstop;sfpstop'
+alias bbye='fstop;clog;exit'
+alias co='git checkout'
+alias gb='git branch'
+alias gaa='git add -A'
+alias pids='ls log/*.pid'
+alias edit='gedit'
+alias sedit='gksu gedit'
+alias svim='sudo vim'
+# generate tags for project using ctags...
+alias gentags='/usr/local/bin/ctags -R --exclude=.git --exclude=log *'
+# deploy pc10 to production
+# alias capprod='cap production deploy -s tag=staging-'
+alias wakemac='sudo etherwake 00:1b:63:a6:cc:7a'
+
+# vagrant stuff
+alias vs='vagrant status'
+alias vu='vagrant up'
+alias vsh='vagrant ssh'
+alias vh='vagrant halt'
+alias vsp='vagrant suspend'
+alias vbl='vagrant box list'
+
+# git aliases from peepcode
+alias gst='git status'
+alias gl='git pull --rebase'
+alias gp='git push'
+alias gd='git diff'
+alias gc='git commit -v'
+alias gca='git commit -v -a'
+alias gb='git branch'
+alias gba='git branch -a'
+alias gdf='git diff-files -p --color'
+alias grestore='git checkout HEAD --'
+alias gu='git gui &'
+alias gk='gitk --all &'
+alias gcq='git commit -a -m'
+alias gsl='git stash list'
+alias gss='git stash save'
+alias gsp='git stash pop'
+
+# COMVERGE ALIASES
+alias apsc='ap; script/console'
+alias apss='ap; script/server'
+alias bsa='bundle exec rake bootstrap:all'
+# alias ci_portal='cd ~/workspace/smartgrid/ci_portal'
+alias cu='bundle exec cucumber -x --tags=~@wip'
+alias dbc='script/dbconsole'
+alias dbd='bundle exec rake db:drop'
+alias dbm='bundle exec rake db:migrate'
+alias dbmr='bundle exec rake db:migrate:reset'
+alias dbounce='IGNORE_REDIS=true bundle exec rake daemons:development:stop && rake daemons:development:start'
+alias dbtp='bundle exec rake db:test:prepare'
+alias dstart='IGNORE_REDIS=true bundle exec rake daemons:development:start'
+alias dstat='IGNORE_REDIS=true bundle exec rake daemons:status'
+alias dstop='IGNORE_REDIS=true bundle exec rake daemons:development:stop'
+# alias elm='emacsclient `lm`'
+# alias gco='git checkout'
+# alias gd='git diff'
+alias gem='ruby -e "raise \"SUDO GEM DETECTED. Unalias gem at your own risk\" if ENV[\"USER\"] == \"root\"" && gem'
+alias gf='git remote update'
+alias gg='git grep'
+# alias gpf='git push github `git rev-parse --abbrev-ref HEAD` -f'
+alias gpr='git pull --rebase'
+alias grom='git fetch origin; git rebase origin/master'
+alias ll='ls -al'
+# alias lm='find db/migrate/ -type f | tail -1'
+# alias portal='cd ~/workspace/smartgrid/portal'
+alias rbounce='rstop; rstart'
+alias rsp='bundle exec rspec -d --drb --require ../common/lib/testing/rspec_timing_formatters.rb --format Testing::TimedDocumentationFormatter'
+alias rspc='rspec -d --drb --require ../common/lib/testing/rspec_timing_formatters.rb --format NyanCatFormatter'
+alias rstart='bundle exec rake daemons:resque:start daemons:thingling:start'
+alias rstop='bundle exec rake daemons:redis:stop daemons:thingling:stop'
+alias rtbounce='rtstop; rtstart'
+# alias rtstart='RAILS_ENV=test rstart'
+# alias rtstop='RAILS_ENV=test rstop'
+# alias rw='bundle exec resque-web ~/workspace/smartgrid/apollo/config/initializers/resque.rb'
+# alias sc='script/console'
+alias ss='script/server'
+alias ssb='script/server 2>1 >> server.log &'
+alias ssd='script/server --debug'
+# alias sudo='sudo '
+# alias tbounce='IGNORE_REDIS=true RAILS_ENV=test bundle exec rake daemons:test:stop && RAILS_ENV=test bundle exec rake daemons:test:start'
+# alias tm='bundle exec rake db:migrate; rake db:migrate:redo'
+# alias trw='RAILS_ENV=test rw'
+alias tstart='IGNORE_REDIS=true bundle exec rake daemons:test:start'
+alias tstop='IGNORE_REDIS=true bundle exec rake daemons:test:stop'
+# alias vi='vi -u /usr/share/vim/vimrc'
+
+# Default to human readable figures
+alias df='df -h'
+alias du='du -h'
+
+# Misc :)
+# alias less='less -r'                          # raw control characters
+# alias whence='type -a'                        # where, of a sort
+alias grep='grep --color'                     # show differences in colour
+
+# Some shortcuts for different directory listings
+alias ls='ls -lhFG'                             # classify files in colour
+alias la='ls -lahFG'                            # classify files in colour
+alias dir='ls -FG'                              # wide format
+alias ld='ls -lp | grep "/"'                   # dirs only
+
+# this should probably be done in my actual .bashrc
+# export PATH=$PATH:$HOME/bin # Add ~/bin
+
+# for work -- make cucumber NOT preserve data after runs
+export KEEP_DB=false
+
+export EDITOR=/usr/bin/vim
+# use vi mode in bash
+set -o vi
+
+# for cool less functionality
+export LESS='-nfr'
+
+export IGNORE_REDIS=true
+
+# completions
+OSXGITCOMPLETION="/usr/local/etc/bash_completion.d/git-completion.bash"
+
+if [ -f $OSXGITCOMPLETION ]; then
+  . $OSXGITCOMPLETION
+fi
+
+# source <(kubectl completion bash)
+# if [ -f $(brew --prefix)/etc/bash_completion ]; then 
+# . $(brew --prefix)/etc/bash_completion
+# fi
+
+# git branch open
+
+function _gbranch {
+  local dir=$1
+  echo `(cd $dir && git rev-parse --abbrev-ref HEAD)`
+}
+
+function gbo {
+  local user_repo=$(git ls-remote --get-url | cut -d ':' -f 2 | cut -d '.' -f 1)
+  local url="https://github.com/${user_repo}/tree/"
+  url+=$(_gbranch ".")
+  echo "$url"
+  open ${url}
+}
+
+function gboc {
+  local user_repo=$(git ls-remote --get-url | cut -d ':' -f 2 | cut -d '.' -f 1)
+  local url="https://github.comverge.com/${user_repo}/tree/"
+  url+=$(_gbranch ".")
+  echo "$url"
+  open ${url}
+}
+
+# get the current git branch for display in prompt
+function parse_git_branch () {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+# set prompt
+# PS1='\u:\w $ '
+RED="\[\033[0;31m\]"
+YELLOW="\[\033[0;33m\]"
+GREEN="\[\033[0;32m\]"
+BLUE="\[\033[0;34m\]"
+
+function get_docker_machine_name () {
+  if [ ! -z "$DOCKER_MACHINE_NAME" ]
+  then
+    echo $DOCKER_MACHINE_NAME
+  fi
+}
+
+dockerRemoveImagesWithCriteria() {
+  local str="<none>"
+  if [[ -n $1 ]]; then
+    str=$1
+  fi
+
+  count=$(docker images | grep "$str" | wc -l)
+
+  if [[ "$count" -eq 0 ]]; then
+    echo "No docker images found for criteria '$str'"
+  else
+    echo "removing $count '$str' images..."
+    docker rmi -f $(docker images | grep "$1" | awk '{print $3}')
+  fi
+}
+
+# this will output git user initials from git pair
+# [\$(git config user.initials)]
+
+# my old prompt
+# PS1="$RED\$(date +%H:%M) \W$YELLOW \$(parse_git_branch)$GREEN[\$(get_docker_machine_name)]\\n$ "
+
+# bash-git-prompt from https://github.com/magicmonty/bash-git-prompt
+# export GIT_PROMPT_SHOW_UPSTREAM=1
+# if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+#   __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
+#   source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+# fi
