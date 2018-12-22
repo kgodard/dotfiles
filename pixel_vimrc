@@ -8,6 +8,8 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Declare the list of plugins.
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'rakr/vim-one'
 Plug 'tpope/vim-sensible'
 Plug 'junegunn/seoul256.vim'
 Plug 'tpope/vim-unimpaired'
@@ -115,7 +117,7 @@ map <silent> <Leader>ss :SpecOutlineToggle<CR>
 nnoremap <Leader>d :TagbarToggle<CR>
 
 " Hide highlighted search terms
-nnoremap <silent> <c-space> :nohl<CR>
+" nnoremap <silent> <c-space> :nohl<CR>
 
 " ---------------
 " UI
@@ -169,6 +171,9 @@ inoremap ;; <Esc> A
 " display current colorscheme
 nmap <leader><leader>c :colorscheme <cr>
 
+" switch between light/dark background
+nmap <leader><leader>b :let &background = ( &background == "dark"? "light" : "dark" ) <cr><cr>
+
 " Window Movement
 nmap <leader>w :winc w<CR>
 
@@ -219,4 +224,6 @@ if exists('+termguicolors')
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
-colo solarized8_dark
+let g:one_allow_italics = 1
+colo one
+set background=dark
