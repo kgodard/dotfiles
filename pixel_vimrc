@@ -1,3 +1,9 @@
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
 
@@ -22,60 +28,54 @@ Plug 'kshenoy/vim-signature'
 Plug 'vim-airline/vim-airline'
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/syntastic'
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 Plug 'gregsexton/MatchTag'
 
 " Autocomplete
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
+Plug 'lifepillar/vim-mucomplete'
+
 "" Languages
-"call minpac#add('aklt/plantuml-syntax')
-"call minpac#add('tyru/open-browser.vim')
-"call minpac#add('weirongxu/plantuml-previewer.vim')
-"call minpac#add('elixir-lang/vim-elixir')
-"call minpac#add('keith/swift.vim')
-"call minpac#add('ElmCast/elm-vim')
-"call minpac#add('nono/vim-handlebars')
-"call minpac#add('vim-ruby/vim-ruby')
-"call minpac#add('tpope/vim-haml')
-"call minpac#add('pangloss/vim-javascript')
-"call minpac#add('kchmck/vim-coffee-script')
-"call minpac#add('itspriddle/vim-jquery')
-"call minpac#add('tpope/vim-rails')
-"call minpac#add('leshill/vim-json')
-"call minpac#add('mutewinter/nginx.vim')
-"call minpac#add('timcharper/textile.vim')
-"call minpac#add('tpope/vim-endwise')
-"call minpac#add('thisivan/vim-ruby-matchit')
-"call minpac#add('tpope/vim-cucumber')
-"call minpac#add('tpope/vim-markdown')
-"call minpac#add('jgoulah/cocoa.vim')
-"call minpac#add('ekalinin/Dockerfile.vim')
-"call minpac#add('hail2u/vim-css3-syntax')
-"call minpac#add('othree/html5-syntax.vim')
-"call minpac#add('othree/javascript-libraries-syntax.vim')
-"call minpac#add('thomd/vim-jasmine')
-"call minpac#add('lunaru/vim-less')
-"call minpac#add('othree/yajs.vim')
-"call minpac#add('othree/es.next.syntax.vim')
-"call minpac#add('tpope/vim-jdaddy')
+Plug 'aklt/plantuml-syntax'
+"Plug 'tyru/open-browser.vim'
+Plug 'weirongxu/plantuml-previewer.vim'
+Plug 'elixir-lang/vim-elixir'
+Plug 'keith/swift.vim'
+Plug 'ElmCast/elm-vim'
+Plug 'nono/vim-handlebars'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-haml'
+Plug 'pangloss/vim-javascript'
+Plug 'kchmck/vim-coffee-script'
+Plug 'itspriddle/vim-jquery'
+Plug 'tpope/vim-rails'
+Plug 'leshill/vim-json'
+Plug 'mutewinter/nginx.vim'
+Plug 'timcharper/textile.vim'
+Plug 'tpope/vim-endwise'
+Plug 'thisivan/vim-ruby-matchit'
+"Plug 'tpope/vim-cucumber'
+Plug 'tpope/vim-markdown'
+"Plug 'jgoulah/cocoa.vim'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'othree/html5-syntax.vim'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'thomd/vim-jasmine'
+Plug 'lunaru/vim-less'
+Plug 'othree/yajs.vim'
+Plug 'othree/es.next.syntax.vim'
+Plug 'tpope/vim-jdaddy'
 "if has('ruby')
 "  call minpac#add('matthias-guenther/hammer.vim')
 "endif
 "
 "" Navigation
-"call minpac#add('emilsoman/spec-outline.vim')
-"call minpac#add('kien/ctrlp.vim')
-"call minpac#add('vim-scripts/matchit.zip')
-"call minpac#add('sandeepcr529/Buffet.vim')
-"call minpac#add('majutsushi/tagbar')
-"call minpac#add('lukaszkorecki/coffeetags')
+Plug 'emilsoman/spec-outline.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'vim-scripts/matchit.zip'
+Plug 'sandeepcr529/Buffet.vim'
+Plug 'majutsushi/tagbar'
+Plug 'lukaszkorecki/coffeetags'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
@@ -119,7 +119,7 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 inoremap jj <Esc>
 
 " map for hashrocket
-imap <C-e> <C-R>=expand(' => ')<CR>
+" imap <C-e> <C-R>=expand(' => ')<CR>
 
 " map for ruby interpolation brackets
 inoremap kk #{}<Left>
@@ -161,7 +161,18 @@ map <leader>bf :Bufferlist<CR>
 map <leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
 
 ",v brings up my .vimrc
-" map <leader>v :e ~/.dotfiles/files/vimrc<CR>
+map <leader>v :e ~/.vimrc<CR>
+
+" powerline setup
+let g:airline_powerline_fonts = 1
+
+" mucomplete setup
+set completeopt+=menuone
+set completeopt+=noselect
+set shortmess+=c " Shut off completion messages
+set belloff+=ctrlg " If Vim beeps during completion
+let g:mucomplete#enable_auto_at_startup = 1
+" let g:mucomplete#completion_delay = 1
 
 " default color
 colo gruvbox
