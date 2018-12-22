@@ -21,7 +21,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'godlygeek/tabular'
 Plug 'danro/rename.vim'
-Plug 'iCyMind/NeoSolarized'
+Plug 'lifepillar/vim-solarized8'
 Plug 'airblade/vim-gitgutter'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'kshenoy/vim-signature'
@@ -77,19 +77,58 @@ Plug 'sandeepcr529/Buffet.vim'
 Plug 'majutsushi/tagbar'
 Plug 'lukaszkorecki/coffeetags'
 
+" Search
+Plug 'mhinz/vim-grepper'
+Plug 'junegunn/fzf'
+
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
-
-" for autocomplete
-" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
 
 " map a leader
 let mapleader = ","
 
 " leader s saving
 map <leader>s :w <cr>
+
+" Grepper
+let g:grepper = {}
+let g:grepper.tools = ['rg', 'git', 'grep']
+
+" leader-g to grep with ripgrep
+nnoremap <Leader>g :Grepper -tool rg<CR>
+
+" Search for the current word
+nnoremap <Leader>* :Grepper -cword -noprompt<CR>
+
+" Search for the current selection
+nmap gs <plug>(GrepperOperator)
+xmap gs <plug>(GrepperOperator)
+
+" FZF
+nnoremap <Leader>f :FZF<CR>
+nnoremap <Leader><Leader>f :FZF ../common<CR>
+
+" show spec outline!
+map <silent> <Leader>ss :SpecOutlineToggle<CR>
+
+" Tagbar - browse by methods in file
+nnoremap <Leader>d :TagbarToggle<CR>
+
+" Hide highlighted search terms
+nnoremap <silent> <c-space> :nohl<CR>
+
+" ---------------
+" UI
+" ---------------
+set ruler         " Ruler on
+set number        " Line numbers on
+set nowrap        " Line wrapping off
+set cursorline    " Whole line higlighted
+" set laststatus=2  " Always show the statusline
+" set cmdheight=1   " Two lines for command line.
+set list          " Show trailing spaces and tabs
+set listchars=tab:▷⋅,trail:⋅,nbsp:⋅ "What to show
+" set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 " ---------------
 " Text Format
@@ -175,5 +214,5 @@ let g:mucomplete#enable_auto_at_startup = 1
 " let g:mucomplete#completion_delay = 1
 
 " default color
-colo gruvbox
-set bg=dark
+set termguicolors
+colo solarized8_dark_high

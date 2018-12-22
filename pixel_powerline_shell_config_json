@@ -5,8 +5,5 @@
     "git",
     "newline",
     "username"
-  ],
-  "cwd": {
-    "mode": "dironly"
-  }
+  ]
 }

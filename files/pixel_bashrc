@@ -3,11 +3,11 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 
 # http://www.reddit.com/r/ruby/comments/wgtqj/how_i_spend_my_time_building_rails_apps/c5daer4
 # More suitable settings for ruby when running rails apps
-export RUBY_GC_HEAP_INIT_SLOTS=800000
-export RUBY_HEAP_FREE_MIN=100000
-export RUBY_HEAP_SLOTS_INCREMENT=300000
-export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
-export RUBY_GC_MALLOC_LIMIT=79000000
+# export RUBY_GC_HEAP_INIT_SLOTS=800000
+# export RUBY_HEAP_FREE_MIN=100000
+# export RUBY_HEAP_SLOTS_INCREMENT=300000
+# export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
+# export RUBY_GC_MALLOC_LIMIT=79000000
 
 # digital ocean api token
 export DOTOKEN=82ef116ef5cdbaf1ae375dd59266d5d7f278ac51bb97aa7d68ef94428872c800
@@ -16,8 +16,8 @@ export DOTOKEN=82ef116ef5cdbaf1ae375dd59266d5d7f278ac51bb97aa7d68ef94428872c800
 export DOCKER_CONTENT_TRUST=0
 
 # modern vim vars
-export VIMCONFIG=~/.config/nvim
-export VIMDATA=~/.local/share/nvim
+# export VIMCONFIG=~/.config/nvim
+# export VIMDATA=~/.local/share/nvim
 
 # GREZ development defaults for database
 export MYSQL_HOST=127.0.0.1
@@ -46,8 +46,8 @@ alias storm='cd ~/Development/other/grez_projects/stormfront'
 alias drec='docker rm $(docker ps -a -f status=exited -q)'
 alias drdi='docker rmi $(docker images -f dangling=true -q)'
 alias dc='docker-compose'
-alias cepirbrc='(cd ~ && mv .myirbrc .irbrc)'
-alias noirbrc='(cd ~ && mv .irbrc .myirbrc)'
+# alias cepirbrc='(cd ~ && mv .myirbrc .irbrc)'
+# alias noirbrc='(cd ~ && mv .irbrc .myirbrc)'
 alias pstart='cv-portal-dev-restart'
 alias pstop='cv-portal-dev-stop'
 alias xo='open cep_ios.xcodeproj/'
@@ -60,7 +60,7 @@ alias roomspecs='be rspec spec --exclude-pattern "**/features/*_spec.rb"'
 alias roomifytest='be rails s -e test -p 10000 -d'
 alias getpumapid='ps aux | grep puma | grep -v color | awk '\''{print $2}'\'''
 alias roomifystop='kill -9 $(getpumapid)'
-alias comvtargets='(cd ~/Development/comverge/comv && cat ~/Development/comverge/intellisource/apollo/config/deploy_targets/*.rb | script/generate_servers_file > ~/.comv/config/ip/servers)'
+# alias comvtargets='(cd ~/Development/comverge/comv && cat ~/Development/comverge/intellisource/apollo/config/deploy_targets/*.rb | script/generate_servers_file > ~/.comv/config/ip/servers)'
 alias resetrooms='brake db:reset && be rails s'
 alias resetgrdb='mysql -u root -p grez_development < tmp/grez_production.sql && brake db:migrate && be script/console'
 alias its='bin/spec/api'
@@ -260,11 +260,11 @@ export LESS='-nfr'
 export IGNORE_REDIS=true
 
 # completions
-OSXGITCOMPLETION="/usr/local/etc/bash_completion.d/git-completion.bash"
+# OSXGITCOMPLETION="/usr/local/etc/bash_completion.d/git-completion.bash"
 
-if [ -f $OSXGITCOMPLETION ]; then
-  . $OSXGITCOMPLETION
-fi
+# if [ -f $OSXGITCOMPLETION ]; then
+#   . $OSXGITCOMPLETION
+# fi
 
 # source <(kubectl completion bash)
 # if [ -f $(brew --prefix)/etc/bash_completion ]; then 

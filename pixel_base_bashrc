@@ -1,8 +1,7 @@
 export DOTFILES_HOME="${HOME}/.dotfiles"
-source "$DOTFILES_HOME/files/bashrc"
+source "$DOTFILES_HOME/files/pixel_bashrc"
 
-# GIT_PROMPT_ONLY_IN_REPO=1
-# source ~/.bash-git-prompt/gitprompt.sh
+source <(kubectl completion bash)
 
 function _update_ps1() {
   PS1=$(powerline-shell $?)
@@ -11,3 +10,5 @@ function _update_ps1() {
 if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
   PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
