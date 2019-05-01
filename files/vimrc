@@ -22,6 +22,7 @@ Plugin 'gmarik/Vundle.vim'
 " Bundle 'skwp/vim-ruby-conque'
 
 " Navigation
+Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'emilsoman/spec-outline.vim'
 Plugin 'ZoomWin'
 " Plugin 'wincent/Command-T'
