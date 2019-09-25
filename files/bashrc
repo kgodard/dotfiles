@@ -31,6 +31,8 @@ dmunset() { eval $(docker-machine env -u); }
 newbr() { git checkout -b $1 && git push -u kgodard $1; }
 
 #my aliases
+alias tat='tmux attach -t '
+alias dlog='docker attach --no-stdin --sig-proxy=false'
 alias drmi=dockerRemoveImagesWithCriteria
 alias lastag='git describe --abbrev=0'
 alias cic='cd ~/Development/itron/ci-console && dc run --rm console'
@@ -41,7 +43,7 @@ alias ic='cd ~/Development/itron/intelliconnect'
 alias dm='docker-machine'
 alias aed='cd ~/Development/itron/auto-ee-deploy'
 alias aehg='cd ~/Development/itron/auto-ee-hold-generator'
-alias storm='cd ~/Development/other/grez_projects/stormfront'
+alias storm='cd ~/Development/grez_projects/stormfront'
 alias drec='docker rm $(docker ps -a -f status=exited -q)'
 alias drdi='docker rmi $(docker images -f dangling=true -q)'
 alias dc='docker-compose'
@@ -69,8 +71,8 @@ alias trans='cd $CEP_TRANSLATIONS_DIR'
 alias gsu='cd ../chef-repo; git fetch origin; cd ../; git submodule update; cd apollo'
 alias curdb="cat config/database.yml | grep database | grep -v '#' | grep -v production"
 alias simple='cd ~/Development/xcode_projects/SimpleWrapper'
-alias front='cd ~/Development/other/rooms/frontend'
-alias rooms='cd ~/Development/other/rooms'
+alias front='cd ~/Development/grez_projects/rooms/frontend'
+alias rooms='cd ~/Development/grez_projects/rooms'
 alias weakpass="echo 'PortalUser.find(1).set_weak_password \"pass\"; exit' | be rails c"
 alias rflush="echo 'FLUSHALL' | redis-cli -n 2"
 alias mig='brake db:migrate db:test:prepare'
@@ -87,8 +89,6 @@ alias glc='git log --pretty=format:"%Cred %h %Cgreen %ad %Cblue [%an] %Cgreen %s
 alias gld='git log --oneline --decorate'
 #work
 alias labsnap='comv db import -m create ../../snapshots-intellisource/lab_data.{ddl,sql}'
-alias gr2='cd ~/Development/other/grez_projects/grez2'
-alias wj='cd ~/Development/other/wholejourneys.com'
 alias z='zeus'
 alias fixulimit='ulimit -n 2560'
 alias int='cd ~/Development/itron/intellisource'
@@ -124,7 +124,7 @@ alias pcrp='cd ~/Development/pcwi-reports'
 alias pcwi='cd ~/Development/pcwi'
 alias pcsf='cd ~/Development/pcwi_sf_services'
 alias pw='cd ~/Development/phocuswright'
-alias gr='cd ~/Development/other/grez_projects/GRez'
+alias gr='cd ~/Development/grez_projects/GRez'
 alias pc='cd ~/Development/pcportal'
 # alias ss='authbind --deep script/server -p 80'
 alias con='script/console'
@@ -336,7 +336,7 @@ dockerRemoveImagesWithCriteria() {
 
 # bash-git-prompt from https://github.com/magicmonty/bash-git-prompt
 # export GIT_PROMPT_SHOW_UPSTREAM=1
-if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
-  __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
-  source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
-fi
+# if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+#   __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
+#   source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+# fi
