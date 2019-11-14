@@ -31,7 +31,11 @@ dmunset() { eval $(docker-machine env -u); }
 newbr() { git checkout -b $1 && git push -u kgodard $1; }
 
 #my aliases
-alias tat='tmux attach -t '
+alias tailgrez='kubetail $(kubectl get po -n grez --no-headers | grep grez | grep -v cronjob | awk '\''{print $1}'\'' | head -1 | cut -d '\''-'\'' -f 1,2) -c webapp'
+alias klog='kubectl -n logging port-forward efk-kibana-854786485-v97cc 5601'
+alias tmn='tmux new -s'
+alias tml='tmux ls'
+alias tma='tmux attach -t'
 alias dlog='docker attach --no-stdin --sig-proxy=false'
 alias drmi=dockerRemoveImagesWithCriteria
 alias lastag='git describe --abbrev=0'
@@ -43,7 +47,8 @@ alias ic='cd ~/Development/itron/intelliconnect'
 alias dm='docker-machine'
 alias aed='cd ~/Development/itron/auto-ee-deploy'
 alias aehg='cd ~/Development/itron/auto-ee-hold-generator'
-alias storm='cd ~/Development/grez_projects/stormfront'
+alias ts='cd ~/Development/grez_projects/tripstorm'
+alias tripstorm='cd ~/Development/grez_projects/tripstorm'
 alias drec='docker rm $(docker ps -a -f status=exited -q)'
 alias drdi='docker rmi $(docker images -f dangling=true -q)'
 alias dc='docker-compose'
