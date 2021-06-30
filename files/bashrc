@@ -10,7 +10,7 @@ export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 export RUBY_GC_MALLOC_LIMIT=79000000
 
 # digital ocean api token
-export DOTOKEN=82ef116ef5cdbaf1ae375dd59266d5d7f278ac51bb97aa7d68ef94428872c800
+export DOTOKEN=994c02d96c60ab084c4cc164b04e388369f4aa6d4b02e108212b0cb4d1d2f2dd
 
 # enable docker content trust
 export DOCKER_CONTENT_TRUST=0
@@ -31,6 +31,10 @@ dmunset() { eval $(docker-machine env -u); }
 newbr() { git checkout -b $1 && git push -u kgodard $1; }
 
 #my aliases
+alias knc='kubens -c'
+alias kxc='kubectx -c'
+alias kn=kubens
+alias kx=kubectx
 alias tailgrez='kubetail $(kubectl get po -n grez --no-headers | grep grez | grep -v cronjob | awk '\''{print $1}'\'' | head -1 | cut -d '\''-'\'' -f 1,2) -c webapp'
 alias klog='kubectl -n logging port-forward efk-kibana-854786485-v97cc 5601'
 alias tmn='tmux new -s'
@@ -254,7 +258,10 @@ alias ld='ls -lp | grep "/"'                   # dirs only
 # for work -- make cucumber NOT preserve data after runs
 export KEEP_DB=false
 
-export EDITOR=/usr/bin/vim
+# default editor
+export EDITOR='vim'
+export VISUAL='vim'
+
 # use vi mode in bash
 set -o vi
 
@@ -271,6 +278,11 @@ if [ -f $OSXGITCOMPLETION ]; then
 fi
 
 source <(kubectl completion bash)
+
+complete -F __start_kubectl k
+complete -F _kube_contexts kx
+complete -F _kube_namespaces kn
+
 if [ -f $(brew --prefix)/etc/bash_completion ]; then 
 . $(brew --prefix)/etc/bash_completion
 fi
